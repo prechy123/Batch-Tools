@@ -1,7 +1,12 @@
 import Link from "next/link";
 import React from "react";
 
-const ToolCom = ({ name, description }) => {
+interface ToolComProps {
+  name: string;
+  description: string;
+}
+
+const ToolCom = ({ name, description }: ToolComProps) => {
   return (
     <Link
       href={`/tool/${name}`}
