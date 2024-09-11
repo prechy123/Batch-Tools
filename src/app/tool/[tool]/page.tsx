@@ -6,7 +6,7 @@ import React from 'react'
 const ToolPage = () => {
   const {tool} = useParams()
   return (
-    <div>{decodeURIComponent(tool)}</div>
+    <div>{tool}</div>
   )
 }
 
