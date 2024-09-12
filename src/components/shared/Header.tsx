@@ -19,7 +19,7 @@ export default function Header() {
   if (!mounted) return null;
 
   return (
-    <nav className="sticky top-2 z-10 shadow-lg backdrop-blur-sm">
+    <nav className="sticky z-10 shadow-lg backdrop-blur-sm">
       <div className=" flex justify-between items-center h-[70px] px-10">
         <div>
           <h1 className=" font-extrabold text-2xl">Dirchy</h1>
