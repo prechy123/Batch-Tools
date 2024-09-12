@@ -10,7 +10,7 @@ export default function Home() {
         </h2>
         <p>Convert, Capture, Resize, and Download—all from one app</p>
       </div>
-      <div className="grid items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mt-7">
+      <div className="grid items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mt-7 p-7">
         {tools.map((tool) => {
           return (
             <ToolCom
