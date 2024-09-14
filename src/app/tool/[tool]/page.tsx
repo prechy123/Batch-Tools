@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
@@ -5,16 +6,28 @@ import { tools } from "@/app/tools";
 import { showToast } from "@/utils/ShowToast";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { handlePdfToWord, handleVideoToAudio } from "./apiService";
+import {
+  handleBackgroundRemover,
+  handleImageResizer,
+  handlePdfToWord,
+  handleQRCodeGenerator,
+  handleVideoToAudio,
+  handleVideoTranscriber,
+  handleYoutubeDownloader,
+} from "./apiService";
 
 const ToolPage = () => {
   const { tool } = useParams();
   const [loading, setLoading] = useState(false);
   const [allowDimensions, setAllowDimension] = useState(false);
+  const [width, setWidth] = useState("");
+  const [height, setHeight] = useState("");
   const [downloadLink, setDownloadLink] = useState<string | null>(null);
   const [file, setFile] = useState<any>(null);
   const [fileName, setFileName] = useState("");
-  // const [resizedImageLink, setResizedImageLink] = useState(null);
+  const [imageLink, setImageLink] = useState(null);
+  const [textInput, setTextInput] = useState(false);
+  const [qrText, setQrText] = useState("");
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-expect-error
@@ -24,6 +37,8 @@ const ToolPage = () => {
   useEffect(() => {
     if (currentTool?.name === "Image Resizer") {
       setAllowDimension(true);
+    } else if (currentTool?.name === "QR Code Generator" || currentTool?.name === "Youtube Downloader") {
+      setTextInput(true);
     }
   }, [currentTool?.name]);
 
@@ -34,7 +49,7 @@ const ToolPage = () => {
 
   async function handleSubmit() {
     setLoading(true);
-    if (!file) {
+    if (!file && !qrText) {
       alert("Please select a file first!");
       return;
     }
@@ -55,6 +70,56 @@ const ToolPage = () => {
             setLoading
           );
           break;
+        case "Image Resizer":
+          setFileName("resized_image.jpg");
+          await handleImageResizer(
+            file,
+            width,
+            height,
+            currentTool,
+            setDownloadLink,
+            setImageLink,
+            setLoading
+          );
+          break;
+        case "Image Background Removal":
+          setFileName("background_removed.png");
+          await handleBackgroundRemover(
+            file,
+            currentTool,
+            setDownloadLink,
+            setImageLink,
+            setLoading
+          );
+          break;
+        case "QR Code Generator":
+          setFileName("generated_qr_code.png");
+          await handleQRCodeGenerator(
+            qrText,
+            currentTool,
+            setDownloadLink,
+            setImageLink,
+            setLoading
+          );
+          break;
+        case "Video Transcriber with Real Segment Time Calculation":
+          setFileName("transcription.srt");
+          await handleVideoTranscriber(
+            file,
+            currentTool,
+            setDownloadLink,
+            setLoading
+          );
+          break;
+        case "Youtube Downloader":
+          setFileName("Downloaded_youtube_video.mp4");
+          await handleYoutubeDownloader(
+            qrText,
+            currentTool,
+            setDownloadLink,
+            setLoading
+          );
+          break;
         default:
           setFileName("converted_file");
           break;
@@ -69,49 +134,63 @@ const ToolPage = () => {
   return (
     <div className=" h-screen">
       <h1 className=" text-center mt-6 text-2xl">{toolName}</h1>
-      <p>{currentTool?.description}</p>
+      <p className=" text-center">{currentTool?.description}</p>
       <div className="flex justify-center w-full mt-6">
-        <label className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-slate-600/25 dark:hover:bg-gray-800 dark:bg-slate-600/25 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500">
-          <div className="flex flex-col items-center justify-center pt-5 pb-6">
-            {file ? (
-              <>
-                <p className="mb-2 text-sm text-gray-500 dark:text-gray-400 text-center">
-                  {file.name}
-                </p>
-                <p className=" pt-2">Click to change</p>
-              </>
-            ) : (
-              <>
-                <svg
-                  className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 20 16"
-                >
-                  <path
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
-                  />
-                </svg>
-                <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
-                  <span className="font-semibold">Click to upload</span> or drag
-                  and drop
-                </p>
-              </>
-            )}
+        {textInput ? (
+          <div>
+            <input
+              type="text"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[350px] md:w-[600px] text-center"
+              placeholder=" Enter Url"
+              value={qrText}
+              onChange={(e) => {
+                setQrText(e.target.value), setDownloadLink(null)
+              }}
+            />
           </div>
-          <input
-            id="dropzone-file"
-            accept={currentTool?.acceptType}
-            type="file"
-            className="hidden"
-            onChange={handleFileChange}
-          />
-        </label>
+        ) : (
+          <label className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-slate-600/25 dark:hover:bg-gray-800 dark:bg-slate-600/25 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500">
+            <div className="flex flex-col items-center justify-center pt-5 pb-6">
+              {file ? (
+                <>
+                  <p className="mb-2 text-sm text-gray-500 dark:text-gray-400 text-center">
+                    {file.name}
+                  </p>
+                  <p className=" pt-2">Click to change</p>
+                </>
+              ) : (
+                <>
+                  <svg
+                    className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 20 16"
+                  >
+                    <path
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+                    />
+                  </svg>
+                  <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                    <span className="font-semibold">Click to upload</span> or
+                    drag and drop
+                  </p>
+                </>
+              )}
+            </div>
+            <input
+              id="dropzone-file"
+              accept={currentTool?.acceptType}
+              type="file"
+              className="hidden"
+              onChange={handleFileChange}
+            />
+          </label>
+        )}
       </div>
       {allowDimensions && (
         <div className=" flex justify-evenly text-center mt-3">
@@ -122,6 +201,8 @@ const ToolPage = () => {
                 type="text"
                 id="small-input"
                 className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                value={width}
+                onChange={(e) => setWidth(e.target.value)}
               />
             </label>
           </div>
@@ -132,6 +213,8 @@ const ToolPage = () => {
                 type="text"
                 id="small-input"
                 className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                value={height}
+                onChange={(e) => setHeight(e.target.value)}
               />
             </label>
           </div>
@@ -170,7 +253,9 @@ const ToolPage = () => {
             onClick={() => {
               setFile(null);
               setDownloadLink(null);
+              setQrText("");
             }}
+            className=" flex flex-col items-center justify-center"
           >
             <button
               type="button"
@@ -178,6 +263,12 @@ const ToolPage = () => {
             >
               Download
             </button>
+            {imageLink && (
+              <div className="flex justify-center items-center flex-col">
+                <h3>Resized Image:</h3>
+                <img src={imageLink} alt="Resized" />
+              </div>
+            )}
           </a>
         ) : (
           <button
