@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Provider } from "@/utils/Provider";
 import Header from "@/components/shared/Header";
+import ToastProvider from "../../providers/ToastProvider";
 
 export const metadata: Metadata = {
   title: "Dirchy",
@@ -30,7 +31,7 @@ export default function RootLayout({
               justifyContent: "center",
             }}
           >
-            {children}
+            <ToastProvider>{children}</ToastProvider>
           </main>
         </Provider>
       </body>
