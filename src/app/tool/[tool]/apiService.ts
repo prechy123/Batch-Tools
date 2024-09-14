@@ -78,32 +78,32 @@ export async function handleVideoToAudio(
   }
 }
 
-export async function handleImageResizer(
-  file: any,
-  width: float | internal,
-  height: float | internal,
-  currentTool: any,
-  setDownloadLink: any,
-  setResizedImageLink: any,
-  setLoading: any
-) {
-  const formData = new FormData();
-    formData.append('image_file', file);
-    formData.append('width', width);
-    formData.append('height', height);
-    const response = await fetch(`${BASE_URL}${currentTool?.backendPath}/`, {
-      method: 'POST',
-      body: formData,
-    });
+// export async function handleImageResizer(
+//   file: any,
+//   width: float | internal,
+//   height: float | internal,
+//   currentTool: any,
+//   setDownloadLink: any,
+//   setResizedImageLink: any,
+//   setLoading: any
+// ) {
+//   const formData = new FormData();
+//     formData.append('image_file', file);
+//     formData.append('width', width);
+//     formData.append('height', height);
+//     const response = await fetch(`${BASE_URL}${currentTool?.backendPath}/`, {
+//       method: 'POST',
+//       body: formData,
+//     });
 
-    if (response.ok) {
-      const blob = await response.blob();
-      const url = URL.createObjectURL(blob);
-      setDownloadLink(url);
-      setResizedImageLink(url)
-      setLoading(false)
-    } else {
-      console.error('Error resizing image.');
-      setLoading(false)
-    }
-}
+//     if (response.ok) {
+//       const blob = await response.blob();
+//       const url = URL.createObjectURL(blob);
+//       setDownloadLink(url);
+//       setResizedImageLink(url)
+//       setLoading(false)
+//     } else {
+//       console.error('Error resizing image.');
+//       setLoading(false)
+//     }
+// }

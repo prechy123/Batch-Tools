@@ -14,7 +14,7 @@ const ToolPage = () => {
   const [downloadLink, setDownloadLink] = useState<string | null>(null);
   const [file, setFile] = useState<any>(null);
   const [fileName, setFileName] = useState("");
-  const [resizedImageLink, setResizedImageLink] = useState(null);
+  // const [resizedImageLink, setResizedImageLink] = useState(null);
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-expect-error
