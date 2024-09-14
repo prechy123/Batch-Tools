@@ -6,6 +6,7 @@ import { tools } from "@/app/tools";
 import { showToast } from "@/utils/ShowToast";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import * as motion from "framer-motion/client";
 import {
   handleBackgroundRemover,
   handleImageResizer,
@@ -37,7 +38,10 @@ const ToolPage = () => {
   useEffect(() => {
     if (currentTool?.name === "Image Resizer") {
       setAllowDimension(true);
-    } else if (currentTool?.name === "QR Code Generator" || currentTool?.name === "Youtube Downloader") {
+    } else if (
+      currentTool?.name === "QR Code Generator" ||
+      currentTool?.name === "Youtube Downloader"
+    ) {
       setTextInput(true);
     }
   }, [currentTool?.name]);
@@ -132,7 +136,7 @@ const ToolPage = () => {
   }
 
   return (
-    <div className=" h-screen">
+    <div className=" h-screen container mx-6">
       <h1 className=" text-center mt-6 text-2xl">{toolName}</h1>
       <p className=" text-center">{currentTool?.description}</p>
       <div className="flex justify-center w-full mt-6">
@@ -144,12 +148,12 @@ const ToolPage = () => {
               placeholder=" Enter Url"
               value={qrText}
               onChange={(e) => {
-                setQrText(e.target.value), setDownloadLink(null)
+                setQrText(e.target.value), setDownloadLink(null);
               }}
             />
           </div>
         ) : (
-          <label className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-slate-600/25 dark:hover:bg-gray-800 dark:bg-slate-600/25 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500">
+          <label className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-slate-600/25 dark:hover:bg-gray-800 dark:bg-slate-600/25 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 max-w-[500px]">
             <div className="flex flex-col items-center justify-center pt-5 pb-6">
               {file ? (
                 <>
@@ -175,7 +179,7 @@ const ToolPage = () => {
                       d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
                     />
                   </svg>
-                  <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                  <p className="mb-2 text-sm text-gray-500 dark:text-gray-400 text-center">
                     <span className="font-semibold">Click to upload</span> or
                     drag and drop
                   </p>
@@ -259,15 +263,20 @@ const ToolPage = () => {
           >
             <button
               type="button"
-              className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="text-white bg-yellow-700 hover:bg-yellow-800 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800"
             >
               Download
             </button>
             {imageLink && (
-              <div className="flex justify-center items-center flex-col">
+              <motion.div
+                className="flex justify-center items-center flex-col"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+              >
                 <h3>Resized Image:</h3>
                 <img src={imageLink} alt="Resized" />
-              </div>
+              </motion.div>
             )}
           </a>
         ) : (
