@@ -30,18 +30,7 @@ export async function handlePdfToWord(
       const url = URL.createObjectURL(blob);
       setDownloadLink(url);
       showToast("success", "Successfully converted to word");
-      // const url = window.URL.createObjectURL(blob);
-      // const link = document.createElement("a");
-      // link.href = url;
-      // link.setAttribute(
-      //   "download",
-      //   `converted_${fileName.replace(".pdf", ".docx")}`
-      // );
-      // document.body.appendChild(link);
-      // link.click();
-      // link?.parentNode?.removeChild(link);
       setLoading(false);
-      // setFile(null);
     } else {
       setLoading(false);
       // const errorData = await response.json();
@@ -69,40 +58,157 @@ export async function handleVideoToAudio(
     const blob = await response.blob();
     const url = URL.createObjectURL(blob);
     setDownloadLink(url);
-    setLoading(false)
+    showToast("success", "Successfully converted to audio");
+    setLoading(false);
   } else {
     const errorText = await response.text();
     console.error("Error converting video to audio:", errorText);
-    setLoading(false)
+    showToast("error", "Something went wrong, try again later");
+    setLoading(false);
   }
 }
 
-// export async function handleImageResizer(
-//   file: any,
-//   width: float | internal,
-//   height: float | internal,
-//   currentTool: any,
-//   setDownloadLink: any,
-//   setResizedImageLink: any,
-//   setLoading: any
-// ) {
-//   const formData = new FormData();
-//     formData.append('image_file', file);
-//     formData.append('width', width);
-//     formData.append('height', height);
-//     const response = await fetch(`${BASE_URL}${currentTool?.backendPath}/`, {
-//       method: 'POST',
-//       body: formData,
-//     });
+export async function handleImageResizer(
+  file: any,
+  width: string,
+  height: string,
+  currentTool: any,
+  setDownloadLink: any,
+  setImageLink: any,
+  setLoading: any
+) {
+  const formData = new FormData();
+  formData.append("image_file", file);
+  formData.append("width", width);
+  formData.append("height", height);
+  const response = await fetch(`${BASE_URL}${currentTool?.backendPath}/`, {
+    method: "POST",
+    body: formData,
+  });
 
-//     if (response.ok) {
-//       const blob = await response.blob();
-//       const url = URL.createObjectURL(blob);
-//       setDownloadLink(url);
-//       setResizedImageLink(url)
-//       setLoading(false)
-//     } else {
-//       console.error('Error resizing image.');
-//       setLoading(false)
-//     }
-// }
+  if (response.ok) {
+    const blob = await response.blob();
+    const url = URL.createObjectURL(blob);
+    setDownloadLink(url);
+    setImageLink(url);
+    showToast("success", "Successfully resize the image");
+    setLoading(false);
+  } else {
+    showToast("error", "Something went wrong, try again later");
+    setLoading(false);
+  }
+}
+
+export async function handleBackgroundRemover(
+  file: any,
+  currentTool: any,
+  setDownloadLink: any,
+  setImageLink: any,
+  setLoading: any
+) {
+  const formData = new FormData();
+  formData.append("image_file", file);
+  const response = await fetch(`${BASE_URL}${currentTool?.backendPath}/`, {
+    method: "POST",
+    body: formData,
+  });
+
+  if (response.ok) {
+    const blob = await response.blob();
+    const url = URL.createObjectURL(blob);
+    setDownloadLink(url);
+    setImageLink(url);
+    showToast("success", "Successfully removed image background");
+    setLoading(false);
+  } else {
+    showToast("error", "Something went wrong, try again later");
+    setLoading(false);
+  }
+}
+
+export async function handleQRCodeGenerator(
+  qrText: any,
+  currentTool: any,
+  setDownloadLink: any,
+  setImageLink: any,
+  setLoading: any
+) {
+  const formData = new FormData();
+  formData.append("data", qrText);
+
+  const response = await fetch(`${BASE_URL}${currentTool?.backendPath}/`, {
+    method: "POST",
+    body: formData,
+  });
+
+  if (response.ok) {
+    const blob = await response.blob();
+    const url = URL.createObjectURL(blob);
+    setDownloadLink(url);
+    setImageLink(url);
+    showToast("success", "Successfully generated QR code");
+    setLoading(false);
+  } else {
+    const errorText = await response.text();
+    console.error("Error generating QR code:", errorText);
+    showToast("error", "Something went wrong, try again later");
+    setLoading(false);
+  }
+}
+
+export async function handleVideoTranscriber(
+  file: any,
+  currentTool: any,
+  setDownloadLink: any,
+  setLoading: any
+) {
+  const formData = new FormData();
+  formData.append("video_file", file);
+
+  const response = await fetch(`${BASE_URL}${currentTool?.backendPath}/`, {
+    method: "POST",
+    body: formData,
+  });
+
+  if (response.ok) {
+    const blob = await response.blob();
+    const url = URL.createObjectURL(blob);
+    setDownloadLink(url);
+    showToast("success", "Successfully transcribed video");
+    setLoading(false);
+  } else {
+    const errorText = await response.text();
+    console.error("Error transcribing video:", errorText);
+    showToast("error", "Something went wrong, try again later");
+    setLoading(false);
+  }
+}
+
+export async function handleYoutubeDownloader(
+  videoUrl: any,
+  currentTool: any,
+  setDownloadLink: any,
+  setLoading: any
+) {
+  const response = await fetch(`${BASE_URL}${currentTool?.backendPath}/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ video_url: videoUrl }),
+  });
+  if (response.ok) {
+    const blob = await response.blob();
+    const url = window.URL.createObjectURL(
+      new Blob([blob], { type: "video/mp4" })
+    );
+    setDownloadLink(url);
+    showToast("success", "Successfully loaded video");
+    setLoading(false);
+  } else {
+    const errorText = await response.text();
+    console.error("Error transcribing video:", errorText);
+    showToast("error", "Something went wrong, try again later");
+    setLoading(false);
+  }
+}

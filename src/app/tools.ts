@@ -15,7 +15,7 @@ export const tools: tools[] = [
       "Convert PDF documents into editable Word files with accurate formatting.",
     backendPath: "/pdf-to-word",
     actionWord: "Convert PDF to Word",
-    acceptType: "application/pdf"
+    acceptType: "application/pdf",
   },
   {
     id: 2,
@@ -24,6 +24,7 @@ export const tools: tools[] = [
       "Extract audio from video files and save it as MP3 or other audio formats.",
     backendPath: "/video-to-audio",
     actionWord: "Convert Video to Audio",
+    acceptType: "video/*",
   },
   {
     id: 3,
@@ -32,6 +33,7 @@ export const tools: tools[] = [
       "Resize images to specific dimensions, ideal for social media or web use.",
     backendPath: "/image-resize",
     actionWord: "Resize Image",
+    acceptType: "image/*",
   },
   {
     id: 4,
@@ -40,6 +42,7 @@ export const tools: tools[] = [
       "Automatically remove the background from images, perfect for product photos or creative projects.",
     backendPath: "/remove-background",
     actionWord: "Remove Background",
+    acceptType: "image/*",
   },
   {
     id: 5,
@@ -54,7 +57,16 @@ export const tools: tools[] = [
     name: "Video Transcriber with Real Segment Time Calculation",
     description:
       "Transcribe videos into text, with precise time stamps for each segment.",
-    backendPath: "video-transcriber",
+    backendPath: "/video-transcriber",
     actionWord: "Transcribe Video",
+    acceptType: "video/*",
+  },
+  {
+    id: 7,
+    name: "Youtube Downloader",
+    description:
+      "Allows users to download videos from YouTube directly to their devices",
+    backendPath: "/download-youtube",
+    actionWord: "Load Video",
   },
 ];
