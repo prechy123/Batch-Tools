@@ -133,7 +133,7 @@ const ToolPage = () => {
             setDownloadLink,
             setLoading
           );
-          break
+          break;
         default:
           setFileName("converted_file");
           break;
