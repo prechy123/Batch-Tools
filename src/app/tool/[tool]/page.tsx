@@ -10,6 +10,7 @@ import * as motion from "framer-motion/client";
 import {
   handleBackgroundRemover,
   handleImageResizer,
+  handleMovToMp4Converter,
   handlePdfToWord,
   handleQRCodeGenerator,
   handleVideoToAudio,
@@ -124,6 +125,15 @@ const ToolPage = () => {
             setLoading
           );
           break;
+        case "Mov to MP4 Converter":
+          setFileName("Converted_video.mp4");
+          await handleMovToMp4Converter(
+            file,
+            currentTool,
+            setDownloadLink,
+            setLoading
+          );
+          break
         default:
           setFileName("converted_file");
           break;
