@@ -59,7 +59,6 @@ const ToolPage = () => {
       return;
     }
 
-    // Convert the file to base64
     try {
       switch (currentTool?.name) {
         case "PDF to Word Converter":
