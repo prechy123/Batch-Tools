@@ -27,6 +27,7 @@ const ToolPage = () => {
   const [downloadLink, setDownloadLink] = useState<string | null>(null);
   const [file, setFile] = useState<any>(null);
   const [fileName, setFileName] = useState("");
+  // const [fileExtension, setFileExtension] = useState("")
   const [imageLink, setImageLink] = useState(null);
   const [textInput, setTextInput] = useState(false);
   const [qrText, setQrText] = useState("");
@@ -144,6 +145,11 @@ const ToolPage = () => {
     }
   }
 
+  // function handleFileNameOnChange(e: React.ChangeEvent<HTMLInputElement>) {
+  //   const file = e.target.value;
+
+  // }
+
   return (
     <div className=" h-screen container mx-6">
       <h1 className=" text-center mt-6 text-2xl">{toolName}</h1>
@@ -162,11 +168,11 @@ const ToolPage = () => {
             />
           </div>
         ) : (
-          <label className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-slate-600/25 dark:hover:bg-gray-800 dark:bg-slate-600/25 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 max-w-[500px]">
+          <label className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-slate-600/25 dark:hover:bg-gray-800 dark:bg-slate-600/25 hover:bg-neutral-500  dark:border-gray-600 dark:hover:border-gray-500 max-w-[500px]">
             <div className="flex flex-col items-center justify-center pt-5 pb-6">
               {file ? (
                 <>
-                  <p className="mb-2 text-sm text-gray-500 dark:text-gray-400 text-center">
+                  <p className="mb-2 font-lg font-semibold text-center">
                     {file.name}
                   </p>
                   <p className=" pt-2">Click to change</p>
@@ -174,7 +180,7 @@ const ToolPage = () => {
               ) : (
                 <>
                   <svg
-                    className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
+                    className="w-8 h-8 mb-4 "
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -188,7 +194,7 @@ const ToolPage = () => {
                       d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
                     />
                   </svg>
-                  <p className="mb-2 text-sm text-gray-500 dark:text-gray-400 text-center">
+                  <p className="mb-2 text-sm  text-center">
                     <span className="font-semibold">Click to upload</span> or
                     drag and drop
                   </p>
@@ -206,7 +212,7 @@ const ToolPage = () => {
         )}
       </div>
       {allowDimensions && (
-        <div className=" flex justify-evenly text-center mt-3">
+        <div className=" flex justify-center gap-5 text-center mt-3">
           <div>
             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
               Width
@@ -260,34 +266,48 @@ const ToolPage = () => {
             Loading...
           </button>
         ) : downloadLink ? (
-          <a
-            href={downloadLink}
-            download={fileName}
-            onClick={() => {
-              setFile(null);
-              setDownloadLink(null);
-              setQrText("");
-            }}
-            className=" flex flex-col items-center justify-center"
-          >
-            <button
-              type="button"
-              className="text-white bg-yellow-700 hover:bg-yellow-800 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800"
+          <div className=" flex flex-col">
+            <div className="mb-2">
+              <label className="block mb-1 text-sm font-semibold text-gray-900 dark:text-white">
+                Edit file name:
+              </label>
+              <input
+                type="text"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[260px] md:w-[350px] text-center p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                value={fileName}
+                onChange={(e) => setFileName(e.target.value)}
+                placeholder="Edit file name"
+              />
+            </div>
+            <a
+              href={downloadLink}
+              download={fileName}
+              onClick={() => {
+                setFile(null);
+                setDownloadLink(null);
+                setQrText("");
+              }}
+              className=" flex flex-col items-center justify-center"
             >
-              Download
-            </button>
-            {imageLink && (
-              <motion.div
-                className="flex justify-center items-center flex-col"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
+              <button
+                type="button"
+                className="text-white bg-yellow-700 hover:bg-yellow-800 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800"
               >
-                <h3>Resized Image:</h3>
-                <img src={imageLink} alt="Resized" />
-              </motion.div>
-            )}
-          </a>
+                Download
+              </button>
+              {imageLink && (
+                <motion.div
+                  className="flex justify-center items-center flex-col"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <h3>Resized Image:</h3>
+                  <img src={imageLink} alt="Resized" />
+                </motion.div>
+              )}
+            </a>
+          </div>
         ) : (
           <button
             type="button"
