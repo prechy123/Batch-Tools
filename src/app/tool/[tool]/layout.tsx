@@ -16,12 +16,16 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 
   return {
     title: `Dirchy - ${toolName}`,
-    description: currentTool?.description
+    description: currentTool?.description,
   };
 }
 
-const ToolLayout = ({ children }: { children: React.ReactDOM }) => {
+function ToolLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return <>{children}</>;
-};
+}
 
 export default ToolLayout;
