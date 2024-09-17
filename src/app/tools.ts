@@ -39,7 +39,7 @@ export const tools: tools[] = [
     id: 4,
     name: "Image Background Removal",
     description:
-      "Automatically remove the background from images, perfect for product photos or creative projects.",
+      "Automatically remove the background from images.",
     backendPath: "/remove-background",
     actionWord: "Remove Background",
     acceptType: "image/*",
@@ -54,19 +54,27 @@ export const tools: tools[] = [
   },
   {
     id: 6,
-    name: "Video Transcriber with Real Segment Time Calculation",
+    name: "Video Transcriber",
     description:
       "Transcribe videos into text, with precise time stamps for each segment.",
     backendPath: "/video-transcriber",
     actionWord: "Transcribe Video",
     acceptType: "video/*",
   },
+  // {
+  //   id: 7,
+  //   name: "Youtube Downloader",
+  //   description:
+  //     "Allows users to download videos from YouTube directly to their devices",
+  //   backendPath: "/download-youtube",
+  //   actionWord: "Load Video",
+  // },
   {
-    id: 7,
-    name: "Youtube Downloader",
-    description:
-      "Allows users to download videos from YouTube directly to their devices",
-    backendPath: "/download-youtube",
-    actionWord: "Load Video",
-  },
+    id: 8,
+    name: "Mov to MP4 Converter",
+    description: "Convert MOV video files to the widely supported MP4 format.",
+    backendPath: "/convert-mov-to-mp4",
+    actionWord: "Convert Video",
+    acceptType: "video/*"
+  }
 ];
