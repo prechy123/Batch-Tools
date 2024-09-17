@@ -203,12 +203,39 @@ export async function handleYoutubeDownloader(
       new Blob([blob], { type: "video/mp4" })
     );
     setDownloadLink(url);
-    showToast("success", "Successfully loaded video");
+    showToast("success", "Successfully converted video");
     setLoading(false);
   } else {
     const errorText = await response.text();
     console.error("Error transcribing video:", errorText);
     showToast("error", "Something went wrong, try again later");
     setLoading(false);
+  }
+}
+
+export async function handleMovToMp4Converter(
+  file: any,
+  currentTool: any,
+  setDownloadLink: any,
+  setLoading: any
+) {
+  const formData = new FormData();
+  formData.append("video_file", file);
+
+  const response = await fetch(`${BASE_URL}${currentTool?.backendPath}/`, {
+    method: "POST",
+    body: formData,
+  });
+  if (response.ok) {
+    // Handle file download
+    const blob = await response.blob();
+    const url = URL.createObjectURL(blob);
+    setDownloadLink(url);
+    showToast("success", "Successfully converted to word");
+    setLoading(false);
+  } else {
+    setLoading(false);
+    // const errorData = await response.json();
+    showToast("error", "Something went wrong, try again later");
   }
 }

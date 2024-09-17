@@ -23,9 +23,9 @@ export default function Home() {
   return (
     <main className="h-screen container mx-6">
       <div className=" text-center mt-10">
-        <h2 className=" text-4xl">
+        <h1 className=" text-4xl">
           All-in-One Media Toolkit - Simplify Your Digital Workflow
-        </h2>
+        </h1>
         <p>Convert, Capture, Resize, and Download—all from one app</p>
       </div>
       <motion.div
