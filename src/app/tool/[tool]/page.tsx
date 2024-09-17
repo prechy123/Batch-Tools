@@ -6,6 +6,7 @@ import { tools } from "@/app/tools";
 import { showToast } from "@/utils/ShowToast";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import { useDropzone } from "react-dropzone";
 import * as motion from "framer-motion/client";
 import {
   handleBackgroundRemover,
@@ -31,6 +32,16 @@ const ToolPage = () => {
   const [imageLink, setImageLink] = useState(null);
   const [textInput, setTextInput] = useState(false);
   const [qrText, setQrText] = useState("");
+
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop: (acceptedFiles) => {
+      if (acceptedFiles.length > 0) {
+        setFile(acceptedFiles[0]);
+      }
+    },
+    multiple: false,
+    noClick: true,
+  });
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-expect-error
@@ -168,7 +179,10 @@ const ToolPage = () => {
             />
           </div>
         ) : (
-          <label className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-slate-600/25 dark:hover:bg-gray-800 dark:bg-slate-600/25 hover:bg-neutral-500  dark:border-gray-600 dark:hover:border-gray-500 max-w-[500px]">
+          <label
+            {...getRootProps()}
+            className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-slate-600/25 dark:hover:bg-gray-800 dark:bg-slate-600/25 hover:bg-neutral-500  dark:border-gray-600 dark:hover:border-gray-500 max-w-[500px]"
+          >
             <div className="flex flex-col items-center justify-center pt-5 pb-6">
               {file ? (
                 <>
@@ -194,14 +208,19 @@ const ToolPage = () => {
                       d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
                     />
                   </svg>
-                  <p className="mb-2 text-sm  text-center">
-                    <span className="font-semibold">Click to upload</span> or
-                    drag and drop
-                  </p>
+                  {isDragActive ? (
+                    <p className="font-semibold">Drop file here</p>
+                  ) : (
+                    <p className="mb-2 text-sm  text-center">
+                      <span className="font-semibold">Click to upload</span> or
+                      drag and drop
+                    </p>
+                  )}
                 </>
               )}
             </div>
             <input
+              {...getInputProps()}
               id="dropzone-file"
               accept={currentTool?.acceptType}
               type="file"
