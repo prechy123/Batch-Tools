@@ -17,6 +17,8 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   return {
     title: `Dirchy - ${toolName}`,
     description: currentTool?.description,
+    keywords:
+    `${toolName}, file converter, image resizer, video downloader, background remover, all-in-one app`,
   };
 }
 
