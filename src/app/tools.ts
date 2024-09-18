@@ -69,12 +69,12 @@ export const tools: tools[] = [
   //   backendPath: "/download-youtube",
   //   actionWord: "Load Video",
   // },
-  {
-    id: 8,
-    name: "Mov to MP4 Converter",
-    description: "Convert MOV video files to the widely supported MP4 format.",
-    backendPath: "/convert-mov-to-mp4",
-    actionWord: "Convert Video",
-    acceptType: "video/*"
-  }
+  // {
+  //   id: 8,
+  //   name: "Mov to MP4 Converter",
+  //   description: "Convert MOV video files to the widely supported MP4 format.",
+  //   backendPath: "/convert-mov-to-mp4",
+  //   actionWord: "Convert Video",
+  //   acceptType: "video/*"
+  // }
 ];
