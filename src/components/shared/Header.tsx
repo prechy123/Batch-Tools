@@ -42,9 +42,9 @@ export default function Header() {
     <nav className="sticky top-0 z-10 shadow-lg backdrop-blur-sm">
       <div className=" flex justify-between items-center h-[70px] px-5 sm:px-10">
         <div>
-          <h1 className=" font-extrabold text-2xl">Dirchy</h1>
+          <h1 className=" font-extrabold text-xl sm:text-2xl">Dirchy</h1>
         </div>
-        <div className="flex gap-6 sm:gap-12 bg-slate-600/25 backdrop-blur-lg rounded p-3 ">
+        <div className="flex gap-4 sm:gap-12 bg-slate-600/25 backdrop-blur-lg rounded p-3 ">
           {paths.map((path) => {
             const isActive = path.link === pathname ? true : false;
             const navMenuClass = isActive
@@ -56,7 +56,7 @@ export default function Header() {
                 href={path.link}
                 key={path.link}
               >
-                <div className="nav-menu">{path.pathname}</div>
+                <h3 className=" text-lg">{path.pathname}</h3>
               </Link>
             );
           })}
@@ -71,7 +71,7 @@ export default function Header() {
           </p>
           {themeDropDown && (
             <motion.div
-              className="absolute top-10 right-10 bg-[#93785b] text-white dark:text-black p-2 rounded px-4 shadow-lg"
+              className="absolute top-10 right-10 bg-[#93785b] w-20 text-center p-2 rounded px-4 shadow-lg"
               variants={containerVariants}
               initial="hidden"
               animate="visible"
@@ -81,7 +81,7 @@ export default function Header() {
                   setTheme("light");
                   setThemeDropdown(false);
                 }}
-                className=" cursor-pointer mb-1"
+                className=" cursor-pointer mb-1 hover:font-bold"
                 variants={childVariants}
               >
                 Light
@@ -91,7 +91,7 @@ export default function Header() {
                   setTheme("dark");
                   setThemeDropdown(false);
                 }}
-                className=" cursor-pointer"
+                className=" cursor-pointer hover:font-bold"
                 variants={childVariants}
               >
                 Dark

@@ -22,14 +22,16 @@ const childVariants = {
 export default function Home() {
   return (
     <main className="h-screen container mx-6">
-      <div className=" text-center mt-10">
-        <h1 className=" text-4xl">
+      <div className=" text-center mt-4 sm:mt-10">
+        <h1 className=" text-3xl sm:text-4xl pb-3">
           All-in-One Media Toolkit - Simplify Your Digital Workflow
         </h1>
-        <p>Convert, Capture, Resize, and Download—all from one app</p>
+        <p className=" text-l sm:text-xl">
+          Convert, Capture, Resize, and Download—all from one app
+        </p>
       </div>
       <motion.div
-        className="grid items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 my-7"
+        className="grid items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 my-4 sm:my-7"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
