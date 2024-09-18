@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { showToast } from "@/utils/ShowToast";
-import BASE_URL from "@/utils/util";
 
 export async function handlePdfToWord(
   file: any,
@@ -14,7 +13,7 @@ export async function handlePdfToWord(
     const base64FileData = reader?.result?.split(",")[1]; // get the base64 part without the data URI prefix
     const fileName = file.name;
 
-    const response = await fetch(`${BASE_URL}${currentTool?.backendPath}/`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}${currentTool?.backendPath}/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -48,7 +47,7 @@ export async function handleVideoToAudio(
   const formData = new FormData();
   formData.append("video_file", file);
 
-  const response = await fetch(`${BASE_URL}${currentTool?.backendPath}/`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}${currentTool?.backendPath}/`, {
     method: "POST",
     body: formData,
   });
@@ -81,7 +80,7 @@ export async function handleImageResizer(
   formData.append("image_file", file);
   formData.append("width", width);
   formData.append("height", height);
-  const response = await fetch(`${BASE_URL}${currentTool?.backendPath}/`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}${currentTool?.backendPath}/`, {
     method: "POST",
     body: formData,
   });
@@ -108,7 +107,7 @@ export async function handleBackgroundRemover(
 ) {
   const formData = new FormData();
   formData.append("image_file", file);
-  const response = await fetch(`${BASE_URL}${currentTool?.backendPath}/`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}${currentTool?.backendPath}/`, {
     method: "POST",
     body: formData,
   });
@@ -136,7 +135,7 @@ export async function handleQRCodeGenerator(
   const formData = new FormData();
   formData.append("data", qrText);
 
-  const response = await fetch(`${BASE_URL}${currentTool?.backendPath}/`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}${currentTool?.backendPath}/`, {
     method: "POST",
     body: formData,
   });
@@ -165,7 +164,7 @@ export async function handleVideoTranscriber(
   const formData = new FormData();
   formData.append("video_file", file);
 
-  const response = await fetch(`${BASE_URL}${currentTool?.backendPath}/`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}${currentTool?.backendPath}/`, {
     method: "POST",
     body: formData,
   });
@@ -190,7 +189,7 @@ export async function handleYoutubeDownloader(
   setDownloadLink: any,
   setLoading: any
 ) {
-  const response = await fetch(`${BASE_URL}${currentTool?.backendPath}/`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}${currentTool?.backendPath}/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -222,7 +221,7 @@ export async function handleMovToMp4Converter(
   const formData = new FormData();
   formData.append("video_file", file);
 
-  const response = await fetch(`${BASE_URL}${currentTool?.backendPath}/`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}${currentTool?.backendPath}/`, {
     method: "POST",
     body: formData,
   });
