@@ -156,11 +156,6 @@ const ToolPage = () => {
     }
   }
 
-  // function handleFileNameOnChange(e: React.ChangeEvent<HTMLInputElement>) {
-  //   const file = e.target.value;
-
-  // }
-
   return (
     <div className=" h-screen container mx-6">
       <h1 className=" text-center mt-6 text-2xl">{toolName}</h1>
