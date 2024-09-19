@@ -14,8 +14,8 @@ const SingleInputTool = ({ toolName }: {toolName: string}) => {
 
   const [imageLink, setImageLink] = useState<string | null>(null);
   const [allowDimensions, setAllowDimension] = useState(false);
-  const [width, setWidth] = useState("");
-  const [height, setHeight] = useState("");
+  const [width, setWidth] = useState<string>("");
+  const [height, setHeight] = useState<string>("");
   const {
     file,
     downloadLink,
