@@ -9,7 +9,7 @@ import useTextInput from "@/hooks/useTextInput";
 import useServerHandler from "@/hooks/useServerHandler";
 import Image from "next/image";
 
-const SingleInputTool = ({ tool }: { tool: any }) => {
+const SingleInputTool = ({ tool }: { tool }) => {
   const toolName: string = decodeURIComponent(tool);
   const currentTool = tools.find((tool) => tool.name === toolName);
 
