@@ -12,7 +12,7 @@ const ToolPage = () => {
 
   return (
     <div className=" h-screen container mx-6">
-      {tool === "PDF Merger" ? (
+      {toolName === "PDF Merger" ? (
         <MultipleInputTool toolName={toolName} />
       ) : (
         <SingleInputTool toolName={toolName} />

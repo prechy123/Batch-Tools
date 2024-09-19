@@ -76,8 +76,7 @@ const MultipleInputTool = ({ toolName }: { toolName: string }) => {
                   />
                 </svg>
                 <p className="mb-2 text-sm  text-center">
-                  <span className="font-semibold">Click to upload</span> or drag
-                  and drop
+                  <span className="font-semibold">Click to upload</span> <br/>Select more than one pdf to merge
                 </p>
               </>
             )}
