@@ -13,16 +13,19 @@ export async function handlePdfToWord(
     const base64FileData = reader?.result?.split(",")[1]; // get the base64 part without the data URI prefix
     const fileName = file.name;
 
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}${currentTool?.backendPath}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        file_name: fileName,
-        file_data: base64FileData, // the base64-encoded file content
-      }),
-    });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}${currentTool?.backendPath}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          file_name: fileName,
+          file_data: base64FileData, // the base64-encoded file content
+        }),
+      }
+    );
     if (response.ok) {
       // Handle file download
       const blob = await response.blob();
@@ -47,10 +50,13 @@ export async function handleVideoToAudio(
   const formData = new FormData();
   formData.append("video_file", file);
 
-  const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}${currentTool?.backendPath}`, {
-    method: "POST",
-    body: formData,
-  });
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}${currentTool?.backendPath}`,
+    {
+      method: "POST",
+      body: formData,
+    }
+  );
 
   if (response.ok) {
     // Handle success, set the download link for the audio file
@@ -80,10 +86,13 @@ export async function handleImageResizer(
   formData.append("image_file", file);
   formData.append("width", width);
   formData.append("height", height);
-  const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}${currentTool?.backendPath}`, {
-    method: "POST",
-    body: formData,
-  });
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}${currentTool?.backendPath}`,
+    {
+      method: "POST",
+      body: formData,
+    }
+  );
 
   if (response.ok) {
     const blob = await response.blob();
@@ -107,10 +116,13 @@ export async function handleBackgroundRemover(
 ) {
   const formData = new FormData();
   formData.append("image_file", file);
-  const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}${currentTool?.backendPath}`, {
-    method: "POST",
-    body: formData,
-  });
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}${currentTool?.backendPath}`,
+    {
+      method: "POST",
+      body: formData,
+    }
+  );
 
   if (response.ok) {
     const blob = await response.blob();
@@ -135,10 +147,13 @@ export async function handleQRCodeGenerator(
   const formData = new FormData();
   formData.append("data", qrUrl);
 
-  const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}${currentTool?.backendPath}`, {
-    method: "POST",
-    body: formData,
-  });
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}${currentTool?.backendPath}`,
+    {
+      method: "POST",
+      body: formData,
+    }
+  );
 
   if (response.ok) {
     const blob = await response.blob();
@@ -164,10 +179,13 @@ export async function handleVideoTranscriber(
   const formData = new FormData();
   formData.append("video_file", file);
 
-  const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}${currentTool?.backendPath}`, {
-    method: "POST",
-    body: formData,
-  });
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}${currentTool?.backendPath}`,
+    {
+      method: "POST",
+      body: formData,
+    }
+  );
 
   if (response.ok) {
     const blob = await response.blob();
@@ -189,13 +207,16 @@ export async function handleYoutubeDownloader(
   setDownloadLink: any,
   setLoading: any
 ) {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}${currentTool?.backendPath}`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ video_url: videoUrl }),
-  });
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}${currentTool?.backendPath}`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ video_url: videoUrl }),
+    }
+  );
   if (response.ok) {
     const blob = await response.blob();
     const url = window.URL.createObjectURL(
@@ -221,16 +242,51 @@ export async function handleMovToMp4Converter(
   const formData = new FormData();
   formData.append("video_file", file);
 
-  const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}${currentTool?.backendPath}`, {
-    method: "POST",
-    body: formData,
-  });
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}${currentTool?.backendPath}`,
+    {
+      method: "POST",
+      body: formData,
+    }
+  );
   if (response.ok) {
     // Handle file download
     const blob = await response.blob();
     const url = URL.createObjectURL(blob);
     setDownloadLink(url);
     showToast("success", "Successfully converted to word");
+    setLoading(false);
+  } else {
+    setLoading(false);
+    // const errorData = await response.json();
+    showToast("error", "Something went wrong, try again later");
+  }
+}
+
+export async function handlePdfMerger(
+  files: any,
+  currentTool: any,
+  setDownloadLink: any,
+  setLoading: any
+) {
+  const formData = new FormData();
+  for (let i = 0; i < files.length; i++) {
+    formData.append("pdf_files", files[i]);
+  }
+
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}${currentTool?.backendPath}`,
+    {
+      method: "POST",
+      body: formData,
+    }
+  );
+  if (response.ok) {
+    // Handle file download
+    const blob = await response.blob();
+    const url = URL.createObjectURL(blob);
+    setDownloadLink(url);
+    showToast("success", "Successfully merged the PDFs");
     setLoading(false);
   } else {
     setLoading(false);

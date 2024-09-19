@@ -1,5 +1,6 @@
 "use client";
 
+import MultipleInputTool from "@/components/tool/MultipleInputTool";
 import SingleInputTool from "@/components/tool/SingleInputTool";
 import { useParams } from "next/navigation";
 
@@ -11,7 +12,11 @@ const ToolPage = () => {
 
   return (
     <div className=" h-screen container mx-6">
-      <SingleInputTool toolName={toolName} />
+      {tool === "PDF Merger" ? (
+        <MultipleInputTool toolName={toolName} />
+      ) : (
+        <SingleInputTool toolName={toolName} />
+      )}
     </div>
   );
 };

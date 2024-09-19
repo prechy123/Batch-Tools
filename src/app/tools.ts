@@ -77,14 +77,14 @@ export const tools: Tools[] = [
   //   actionWord: "Convert Video",
   //   acceptType: "video/*"
   // },
-  // {
-  //   id: 9,
-  //   name: "PDF Merger",
-  //   description: "Our online PDF merger offers a fast and easy way to combine multiple PDF files into one.",
-  //   backendPath: "/merge-pdfs/",
-  //   actionWord: "Combine PDFs",
-  //   acceptType: "application/pdf"
-  // },
+  {
+    id: 9,
+    name: "PDF Merger",
+    description: "Combine multiple PDF files into one quickly and easily.",
+    backendPath: "/merge-pdfs/",
+    actionWord: "Combine PDFs",
+    acceptType: "application/pdf"
+  },
   // {
   //   id: 10,
   //   name: "PDF Splitter",

@@ -2,6 +2,7 @@ import {
   handleBackgroundRemover,
   handleImageResizer,
   handleMovToMp4Converter,
+  handlePdfMerger,
   handlePdfToWord,
   handleQRCodeGenerator,
   handleVideoToAudio,
@@ -14,18 +15,20 @@ import type { Tools } from "@/app/tools";
 
 interface UseServerHandler {
   toolName: string | undefined;
-  file: File | null;
-  url: string;
+  file?: File | null;
+  files?: FileList | null;
+  url?: string;
   currentTool: Tools | undefined;
   setDownloadLink: (link: string | null) => void;
-  width: string;
-  height: string;
-  setImageLink: (link: string | null) => void;
+  width?: string;
+  height?: string;
+  setImageLink?: (link: string | null) => void;
 }
 
 function useServerHandler({
   toolName,
   file,
+  files,
   url,
   currentTool,
   setDownloadLink,
@@ -38,8 +41,13 @@ function useServerHandler({
 
   async function handleSubmit() {
     setLoading(true);
-    if (!file && !url) {
+    if (!file && !url && !files) {
       alert("Please select a file first!");
+      setLoading(false)
+      return;
+    }
+    if (files && files?.length <= 1) {
+      alert("Please select more than 1 pdf")
       setLoading(false)
       return;
     }
@@ -117,6 +125,15 @@ function useServerHandler({
             setDownloadLink,
             setLoading
           );
+          break;
+        case "PDF Merger":
+          setFileName("Merged_PDF.pdf");
+          await handlePdfMerger(
+            files,
+            currentTool,
+            setDownloadLink,
+            setLoading
+          )
           break;
         default:
           setFileName("converted_file");
