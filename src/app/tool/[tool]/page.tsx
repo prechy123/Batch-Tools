@@ -1,17 +1,17 @@
 "use client";
 
-/* eslint-disable @next/next/no-img-element */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import SingleInputTool from "@/components/tool/SingleInputTool";
 import { useParams } from "next/navigation";
 
 const ToolPage = () => {
-  const { tool } = useParams()
+  const { tool } = useParams();
+  const toolName = Array.isArray(tool)
+    ? tool.map(decodeURIComponent).join(", ") // Handle array case, join the decoded values
+    : decodeURIComponent(tool); // Handle string case
 
   return (
     <div className=" h-screen container mx-6">
-      <SingleInputTool tool={tool} />
+      <SingleInputTool toolName={toolName} />
     </div>
   );
 };

@@ -9,8 +9,7 @@ import useTextInput from "@/hooks/useTextInput";
 import useServerHandler from "@/hooks/useServerHandler";
 import Image from "next/image";
 
-const SingleInputTool = ({ tool }) => {
-  const toolName: string = decodeURIComponent(tool);
+const SingleInputTool = ({ toolName }: {toolName: string}) => {
   const currentTool = tools.find((tool) => tool.name === toolName);
 
   const [imageLink, setImageLink] = useState<string | null>(null);
