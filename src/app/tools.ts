@@ -1,4 +1,4 @@
-interface tools {
+export interface Tools {
   id: number;
   name: string;
   description: string;
@@ -7,13 +7,13 @@ interface tools {
   acceptType?: string;
 }
 
-export const tools: tools[] = [
+export const tools: Tools[] = [
   {
     id: 1,
     name: "PDF to Word Converter",
     description:
       "Convert PDF documents into editable Word files with accurate formatting.",
-    backendPath: "/pdf-to-word",
+    backendPath: "/pdf-to-word/",
     actionWord: "Convert PDF to Word",
     acceptType: "application/pdf",
   },
@@ -22,7 +22,7 @@ export const tools: tools[] = [
     name: "Video to Audio Converter",
     description:
       "Extract audio from video files and save it as MP3 or other audio formats.",
-    backendPath: "/video-to-audio",
+    backendPath: "/video-to-audio/",
     actionWord: "Convert Video to Audio",
     acceptType: "video/*",
   },
@@ -31,7 +31,7 @@ export const tools: tools[] = [
     name: "Image Resizer",
     description:
       "Resize images to specific dimensions, ideal for social media or web use.",
-    backendPath: "/image-resize",
+    backendPath: "/image-resize/",
     actionWord: "Resize Image",
     acceptType: "image/*",
   },
@@ -40,7 +40,7 @@ export const tools: tools[] = [
     name: "Image Background Removal",
     description:
       "Automatically remove the background from images.",
-    backendPath: "/remove-background",
+    backendPath: "/remove-background/",
     actionWord: "Remove Background",
     acceptType: "image/*",
   },
@@ -49,7 +49,7 @@ export const tools: tools[] = [
     name: "QR Code Generator",
     description:
       "Create custom QR codes that link to websites, files, or other information.",
-    backendPath: "/generate-qr-code",
+    backendPath: "/generate-qr-code/",
     actionWord: "Generate QR code",
   },
   {
@@ -57,7 +57,7 @@ export const tools: tools[] = [
     name: "Video Transcriber",
     description:
       "Transcribe videos into text, with precise time stamps for each segment.",
-    backendPath: "/video-transcriber",
+    backendPath: "/video-transcriber/",
     actionWord: "Transcribe Video",
     acceptType: "video/*",
   },
@@ -66,15 +66,47 @@ export const tools: tools[] = [
   //   name: "Youtube Downloader",
   //   description:
   //     "Allows users to download videos from YouTube directly to their devices",
-  //   backendPath: "/download-youtube",
+  //   backendPath: "/download-youtube/",
   //   actionWord: "Load Video",
   // },
   // {
   //   id: 8,
   //   name: "Mov to MP4 Converter",
   //   description: "Convert MOV video files to the widely supported MP4 format.",
-  //   backendPath: "/convert-mov-to-mp4",
+  //   backendPath: "/convert-mov-to-mp4/",
   //   actionWord: "Convert Video",
   //   acceptType: "video/*"
-  // }
+  // },
+  // {
+  //   id: 9,
+  //   name: "PDF Merger",
+  //   description: "Our online PDF merger offers a fast and easy way to combine multiple PDF files into one.",
+  //   backendPath: "/merge-pdfs/",
+  //   actionWord: "Combine PDFs",
+  //   acceptType: "application/pdf"
+  // },
+  // {
+  //   id: 10,
+  //   name: "PDF Splitter",
+  //   description: "Our online PDF splitter provides a quick and simple way to separate a PDF into individual pages or sections",
+  //   backendPath: "/split-pdf/",
+  //   actionWord: "Split PDF",
+  //   acceptType: "application/pdf"
+  // },
+  // {
+  //   id: 11,
+  //   name: "PDF to JPG Converter",
+  //   description: "Our online PDF to JPG converter allows you to effortlessly transform PDF pages into high-quality JPG images.",
+  //   backendPath: "/convert-pdf-to-jpg/",
+  //   actionWord: "Convert to JPG",
+  //   acceptType: "application/pdf"
+  // },
+  // {
+  //   id: 12,
+  //   name: "JPG to PDF Converter",
+  //   description: "Our online PDF merger offers a fast and easy way to combine multiple PDF files into one.",
+  //   backendPath: "/convert-jpg-to-pdf/",
+  //   actionWord: "Convert to PDF",
+  //   // acceptType: "application/pdf"
+  // },
 ];
