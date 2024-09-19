@@ -7,8 +7,9 @@ function useFileInput() {
 
   const handleFileChange = useCallback(
     (e: react.ChangeEvent<HTMLInputElement>) => {
-      if (e.target.files && e.target.files.length > 0) {
-        setFile((prevFile) => (prevFile !== e.target.files[0] ? e.target.files[0] : prevFile));
+      const file = e.target.files
+      if (file && file.length > 0) {
+        setFile((prevFile) => (prevFile !== file[0] ? file[0] : prevFile));
         setDownloadLink(null);
       }
     },
