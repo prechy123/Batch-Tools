@@ -75,8 +75,8 @@ export async function handleVideoToAudio(
 
 export async function handleImageResizer(
   file: any,
-  width: string | undefined,
-  height: string | undefined,
+  width: any,
+  height: any,
   currentTool: any,
   setDownloadLink: any,
   setImageLink: any,
