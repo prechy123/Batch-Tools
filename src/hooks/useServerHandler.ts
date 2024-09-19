@@ -20,8 +20,8 @@ interface UseServerHandler {
   url?: string;
   currentTool: Tools | undefined;
   setDownloadLink: (link: string | null) => void;
-  width?: string;
-  height?: string;
+  width?: string | undefined;
+  height?: string | undefined;
   setImageLink?: (link: string | null) => void;
 }
 
