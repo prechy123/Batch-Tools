@@ -8,8 +8,6 @@ import useFileInput from "@/hooks/useFileInput";
 import useTextInput from "@/hooks/useTextInput";
 import useServerHandler from "@/hooks/useServerHandler";
 import Image from "next/image";
-import JSZip from "jszip";
-import { saveAs } from "file-saver";
 
 const SingleInputTool = ({ toolName }: { toolName: string }) => {
   const currentTool = tools.find((tool) => tool.name === toolName);
