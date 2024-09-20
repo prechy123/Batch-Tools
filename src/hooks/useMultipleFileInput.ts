@@ -1,9 +1,17 @@
 import react, { useCallback, useState } from "react";
-// import { useDropzone } from "react-dropzone";
+import { useDropzone } from "react-dropzone";
 
 function useMultipleFileInput() {
   const [files, setFiles] = useState<FileList | null>(null);
   const [downloadLink, setDownloadLink] = useState<string | null>(null);
+
+  function convertToFileList(files: File[]) {
+    if (files) {
+      const dataTransfer = new DataTransfer();
+      files.forEach((file) => dataTransfer.items.add(file));
+      return dataTransfer.files;
+    }
+  }
 
   const handleFileChange = useCallback(
     (e: react.ChangeEvent<HTMLInputElement>) => {
@@ -18,25 +26,25 @@ function useMultipleFileInput() {
     []
   );
 
-  //   const onDrop = useCallback((acceptedFiles: File[]) => {
-  //     if (acceptedFiles.length > 0) {
-  //       setFiles((prevFile) => {
-  //         const filesArray = Array.from(prevFile);
+  const onDrop = useCallback((acceptedFiles: File[]) => {
+    if (acceptedFiles.length > 0) {
+      setFiles((prevFile) => {
+        if (prevFile) {
+          const filesArray: File[] = [...Array.from(prevFile)];
+          return (
+            convertToFileList([...filesArray, ...acceptedFiles]) || prevFile
+          );
+        }
+        return convertToFileList(acceptedFiles) || null;
+      });
+    }
+  }, []);
 
-  //         if (filesArray.some((file) => file.name !== acceptedFiles[0].name)) {
-  //           return [...prevFile, acceptedfiles[0]];
-  //         }
-
-  //         return filesArray;
-  //       });
-  //     }
-  //   }, []);
-
-  //   const { getRootProps, getInputProps, isDragActive } = useDropzone({
-  //     onDrop,
-  //     multiple: false,
-  //     noClick: true,
-  //   });
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    multiple: true,
+    noClick: true,
+  });
 
   return {
     files,
@@ -44,9 +52,9 @@ function useMultipleFileInput() {
     setFiles,
     setDownloadLink,
     handleFileChange,
-    // getRootProps,
-    // getInputProps,
-    // isDragActive,
+    getRootProps,
+    getInputProps,
+    isDragActive,
   };
 }
 
