@@ -3,6 +3,7 @@ import {
   handleImageResizer,
   handleMovToMp4Converter,
   handlePdfMerger,
+  handlePdfToJpegConverter,
   handlePdfToWord,
   handleQRCodeGenerator,
   handleVideoToAudio,
@@ -38,6 +39,7 @@ function useServerHandler({
 }: UseServerHandler) {
   const [fileName, setFileName] = useState("");
   const [loading, setLoading] = useState(false);
+  const [images, setImages] = useState([])
 
   async function handleSubmit() {
     setLoading(true);
@@ -135,6 +137,15 @@ function useServerHandler({
             setLoading
           )
           break;
+        case "PDF to JPG Converter":
+          setFileName("Converted_file.jpg")
+          await handlePdfToJpegConverter(
+            file,
+            currentTool,
+            setImages,
+            setLoading
+          )
+          break;
         default:
           setFileName("converted_file");
           break;
@@ -145,7 +156,7 @@ function useServerHandler({
       showToast("error", "Something went wrong, try again later");
     }
   }
-  return { fileName, setFileName, loading, handleSubmit };
+  return { fileName, setFileName, loading, handleSubmit, images, setImages };
 }
 
 export default useServerHandler;

@@ -8,8 +8,10 @@ import useFileInput from "@/hooks/useFileInput";
 import useTextInput from "@/hooks/useTextInput";
 import useServerHandler from "@/hooks/useServerHandler";
 import Image from "next/image";
+import JSZip from "jszip";
+import { saveAs } from "file-saver";
 
-const SingleInputTool = ({ toolName }: {toolName: string}) => {
+const SingleInputTool = ({ toolName }: { toolName: string }) => {
   const currentTool = tools.find((tool) => tool.name === toolName);
 
   const [imageLink, setImageLink] = useState<string | null>(null);
@@ -27,16 +29,17 @@ const SingleInputTool = ({ toolName }: {toolName: string}) => {
     isDragActive,
   } = useFileInput();
   const { textInput, setTextInput, url, setUrl } = useTextInput();
-  const { fileName, setFileName, loading, handleSubmit } = useServerHandler({
-    toolName: currentTool?.name,
-    file,
-    url,
-    currentTool,
-    setDownloadLink,
-    width,
-    height,
-    setImageLink,
-  });
+  const { fileName, setFileName, loading, handleSubmit, images, setImages } =
+    useServerHandler({
+      toolName: currentTool?.name,
+      file,
+      url,
+      currentTool,
+      setDownloadLink,
+      width,
+      height,
+      setImageLink,
+    });
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -149,6 +152,41 @@ const SingleInputTool = ({ toolName }: {toolName: string}) => {
           </div>
         </div>
       )}
+      <div className=" flex justify-center mt-2 gap-1 md:gap-2 flex-wrap">
+        {images &&
+          images.length > 0 &&
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          images.map((image: any) => (
+            <div key={image.page_number}>
+              <h4>Page {image.page_number}</h4>
+              <Image
+                src={`data:image/jpeg;base64,${image.image_data}`}
+                alt={`Page ${image.page_number}`}
+                width={200}
+                height={200}
+              />
+              <a
+                href={`data:image/jpeg;base64,${image.image_data}`}
+                download={fileName}
+                onClick={() => {
+                  setImages((prevValues) =>
+                    prevValues.filter(
+                      (prev: any) => prev.page_number !== image.page_number
+                    )
+                  );
+                }}
+                className=" flex flex-col items-center justify-center"
+              >
+                <button
+                  type="button"
+                  className="text-white bg-yellow-700 hover:bg-yellow-800 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800"
+                >
+                  Download
+                </button>
+              </a>
+            </div>
+          ))}
+      </div>
       <div className=" flex justify-center mt-2">
         {loading ? (
           <button
@@ -224,13 +262,16 @@ const SingleInputTool = ({ toolName }: {toolName: string}) => {
             </a>
           </div>
         ) : (
-          <button
-            type="button"
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 inline-flex items-center"
-            onClick={handleSubmit}
-          >
-            {currentTool?.actionWord}
-          </button>
+          images &&
+          images.length === 0 && (
+            <button
+              type="button"
+              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 inline-flex items-center"
+              onClick={handleSubmit}
+            >
+              {currentTool?.actionWord}
+            </button>
+          )
         )}
       </div>
     </>

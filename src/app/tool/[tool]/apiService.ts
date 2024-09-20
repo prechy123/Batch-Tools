@@ -294,3 +294,43 @@ export async function handlePdfMerger(
     showToast("error", "Something went wrong, try again later");
   }
 }
+
+export async function handlePdfToJpegConverter(
+  file: any,
+  currentTool: any,
+  setImages: any,
+  setLoading: any
+) {
+  const reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = async () => {
+    let base64FileData = "";
+    if (typeof reader?.result === "string") {
+      base64FileData = reader.result.split(",")[1];
+    }
+    const fileName = file.name;
+
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}${currentTool?.backendPath}`,
+      {
+        method: "POST",
+        body: JSON.stringify({
+          file_name: fileName,
+          file_data: base64FileData,
+        }),
+      }
+    );
+
+    if (response.ok) {
+      const data = await response.json();
+      setImages(data.images);
+      showToast("success", "Successfully converted PDF to JPG");
+      setLoading(false);
+    } else {
+      const errorText = await response.text();
+      console.error("Error transcribing video:", errorText);
+      showToast("error", "Something went wrong, try again later");
+      setLoading(false);
+    }
+  };
+}

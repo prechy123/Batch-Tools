@@ -93,20 +93,20 @@ export const tools: Tools[] = [
   //   actionWord: "Split PDF",
   //   acceptType: "application/pdf"
   // },
-  // {
-  //   id: 11,
-  //   name: "PDF to JPG Converter",
-  //   description: "Our online PDF to JPG converter allows you to effortlessly transform PDF pages into high-quality JPG images.",
-  //   backendPath: "/convert-pdf-to-jpg/",
-  //   actionWord: "Convert to JPG",
-  //   acceptType: "application/pdf"
-  // },
+  {
+    id: 11,
+    name: "PDF to JPG Converter",
+    description: "Transform PDF pages into high-quality JPG images effortlessly.",
+    backendPath: "/convert-pdf-to-jpg/",
+    actionWord: "Convert PDF to JPG",
+    acceptType: "application/pdf"
+  },
   // {
   //   id: 12,
   //   name: "JPG to PDF Converter",
-  //   description: "Our online PDF merger offers a fast and easy way to combine multiple PDF files into one.",
+  //   description: "Convert multiple JPG to PDF files quickly and easily.",
   //   backendPath: "/convert-jpg-to-pdf/",
   //   actionWord: "Convert to PDF",
-  //   // acceptType: "application/pdf"
+  //   acceptType: "image/*"
   // },
 ];

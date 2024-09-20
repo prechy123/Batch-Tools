@@ -42,7 +42,7 @@ export default function Header() {
     <nav className="sticky top-0 z-10 shadow-lg backdrop-blur-sm">
       <div className=" flex justify-between items-center h-[70px] px-5 sm:px-10">
         <div>
-          <h1 className=" font-extrabold text-xl sm:text-2xl">Dirchy</h1>
+          <h1 className=" font-extrabold text-xl sm:text-2xl">DIRCHY</h1>
         </div>
         <div className="flex gap-4 sm:gap-12 bg-slate-600/25 backdrop-blur-lg rounded p-3 ">
           {paths.map((path) => {
