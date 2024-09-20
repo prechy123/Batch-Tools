@@ -4,7 +4,6 @@ import useServerHandler from "@/hooks/useServerHandler";
 import documentSvg from "../../../public/svg/document.svg";
 import Image from "next/image";
 import { Document, Page, pdfjs } from "react-pdf";
-import { div } from "framer-motion/client";
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/legacy/build/pdf.worker.min.mjs`;
 
 const MultipleInputTool = ({ toolName }: { toolName: string }) => {
