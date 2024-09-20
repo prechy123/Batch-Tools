@@ -26,6 +26,11 @@ interface UseServerHandler {
   setImageLink?: (link: string | null) => void;
 }
 
+interface Image {
+  page_number: number;
+  image_data: string
+}
+
 function useServerHandler({
   toolName,
   file,
@@ -39,7 +44,7 @@ function useServerHandler({
 }: UseServerHandler) {
   const [fileName, setFileName] = useState("");
   const [loading, setLoading] = useState(false);
-  const [images, setImages] = useState([])
+  const [images, setImages] = useState<Image[] | []>([])
 
   async function handleSubmit() {
     setLoading(true);

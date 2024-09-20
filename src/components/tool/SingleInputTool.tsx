@@ -117,7 +117,10 @@ const SingleInputTool = ({ toolName }: { toolName: string }) => {
               accept={currentTool?.acceptType}
               type="file"
               className="hidden"
-              onChange={handleFileChange}
+              onChange={(e) => {
+                setImages([]);
+                handleFileChange(e);
+              }}
             />
           </label>
         )}
@@ -153,13 +156,12 @@ const SingleInputTool = ({ toolName }: { toolName: string }) => {
       <div className=" flex justify-center mt-2 gap-1 md:gap-2 flex-wrap">
         {images &&
           images.length > 0 &&
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          images.map((image: any) => (
+          images.map((image) => (
             <div key={image.page_number}>
               <h4>Page {image.page_number}</h4>
               <Image
                 src={`data:image/jpeg;base64,${image.image_data}`}
-                alt={`Page ${image.page_number}`}
+                alt={`Dirchy - Page ${image.page_number}`}
                 width={200}
                 height={200}
               />
@@ -169,11 +171,11 @@ const SingleInputTool = ({ toolName }: { toolName: string }) => {
                 onClick={() => {
                   setImages((prevValues) =>
                     prevValues.filter(
-                      (prev: any) => prev.page_number !== image.page_number
+                      (prev) => prev.page_number !== image.page_number
                     )
                   );
                 }}
-                className=" flex flex-col items-center justify-center"
+                className=" flex flex-col items-center justify-center mt-1"
               >
                 <button
                   type="button"
