@@ -3,6 +3,8 @@ import useMultipleFileInput from "@/hooks/useMultipleFileInput";
 import useServerHandler from "@/hooks/useServerHandler";
 import documentSvg from "../../../public/svg/document.svg";
 import Image from "next/image";
+import { Document, Page, pdfjs } from "react-pdf";
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/legacy/build/pdf.worker.min.mjs`;
 
 const MultipleInputTool = ({ toolName }: { toolName: string }) => {
   const currentTool = tools.find((tool) => tool.name === toolName);
@@ -16,7 +18,6 @@ const MultipleInputTool = ({ toolName }: { toolName: string }) => {
     currentTool,
     setDownloadLink,
   });
-
   const moveFile = (index: number, direction: "up" | "down") => {
     if (!files) return;
     const newFiles = [...Array.from(files)];
@@ -76,7 +77,8 @@ const MultipleInputTool = ({ toolName }: { toolName: string }) => {
                   />
                 </svg>
                 <p className="mb-2 text-sm  text-center">
-                  <span className="font-semibold">Click to upload</span> <br/>Select more than one pdf to merge
+                  <span className="font-semibold">Click to upload</span> <br />
+                  Select more than one pdf to merge
                 </p>
               </>
             )}
@@ -91,36 +93,116 @@ const MultipleInputTool = ({ toolName }: { toolName: string }) => {
           />
         </label>
       </div>
-      <div>
-        {files &&
-          Array.from(files).map((file, index) => {
-            return (
-              <div
-                key={file.name}
-                style={{ display: "flex", alignItems: "center", justifyContent: 'center' }}
-              >
-                <p>{file.name}</p>
-                <div>
-                  <button
-                    className="bg-red-300 p-2"
-                    onClick={() => moveFile(index, "up")}
-                    disabled={index === 0} // Disable 'up' button if it's the first item
+      {files && (
+        <div className="  mt-5">
+          <h3 className="text-center text-xl mb-1">Arrange PDFs</h3>
+          <div className=" flex gap-1 md:gap-2 items-center justify-center flex-wrap">
+            {files &&
+              Array.from(files).map((file, index) => {
+                return (
+                  <div
+                    key={file.name}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
                   >
-                    Up
-                  </button>
-                  <button
-                    className="bg-green-300 p-2"
-                    onClick={() => moveFile(index, "down")}
-                    disabled={index === files.length - 1} // Disable 'down' button if it's the last item
-                  >
-                    Down
-                  </button>
-                </div>
-              </div>
-            );
-          })}
-      </div>
+                    {
+                      <div className=" flex flex-col gap-1 justify-center items-center ">
+                        <Document file={file}>
+                          <Page
+                            pageNumber={1}
+                            scale={0.3}
+                            width={
+                              window.innerWidth < 768
+                                ? 300
+                                : window.innerWidth < 1024
+                                ? 400
+                                : 600
+                            }
+                            className=" h-36 w-20 md:w-32 overflow-hidden"
+                          />
+                        </Document>
+                        <p className=" text-center">
+                          {file.name.length > 15
+                            ? `${file.name.substring(0, 10)}...pdf`
+                            : file.name}
+                        </p>
 
+                        <div
+                          className="inline-flex rounded-md shadow-sm justify-center "
+                          role="group"
+                        >
+                          <button
+                            type="button"
+                            className="inline-flex items-center px-2 md:px-4 py-1 md:py-2 text-sm font-medium text-gray-900 bg-transparent border border-gray-900 rounded-s-lg hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700"
+                            onClick={() => moveFile(index, "up")}
+                            disabled={index === 0}
+                          >
+                            <svg
+                              width="20px"
+                              height="20px"
+                              viewBox="-0.5 0 25 25"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M13.4092 16.4199L10.3492 13.55C10.1935 13.4059 10.0692 13.2311 9.98425 13.0366C9.89929 12.8422 9.85547 12.6321 9.85547 12.4199C9.85547 12.2077 9.89929 11.9979 9.98425 11.8035C10.0692 11.609 10.1935 11.4342 10.3492 11.29L13.4092 8.41992"
+                                stroke="currentColor"
+                                strokeWidth="1.5"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              />
+                              <path
+                                d="M7 21.4202H17C19.2091 21.4202 21 19.6293 21 17.4202V7.42017C21 5.21103 19.2091 3.42017 17 3.42017H7C4.79086 3.42017 3 5.21103 3 7.42017V17.4202C3 19.6293 4.79086 21.4202 7 21.4202Z"
+                                stroke="currentColor"
+                                strokeWidth="1.5"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              />
+                            </svg>
+                            Left
+                          </button>
+                          <button
+                            type="button"
+                            className="inline-flex items-center px-2 md:px-4 py-1 md:py-2 text-sm font-medium text-gray-900 bg-transparent border border-gray-900 rounded-e-lg hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700"
+                            onClick={() => moveFile(index, "down")}
+                            disabled={index === files.length - 1}
+                          >
+                            <svg
+                              width="20px"
+                              height="20px"
+                              viewBox="-0.5 0 25 25"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M10.5605 8.41992L13.6205 11.29C13.779 11.4326 13.9056 11.6068 13.9924 11.8015C14.0791 11.9962 14.1239 12.2068 14.1239 12.4199C14.1239 12.633 14.0791 12.8439 13.9924 13.0386C13.9056 13.2332 13.779 13.4075 13.6205 13.55L10.5605 16.4199"
+                                stroke="currentColor"
+                                strokeWidth="1.5"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              />
+                              <path
+                                d="M17 3.41992H7C4.79086 3.41992 3 5.21078 3 7.41992V17.4199C3 19.6291 4.79086 21.4199 7 21.4199H17C19.2091 21.4199 21 19.6291 21 17.4199V7.41992C21 5.21078 19.2091 3.41992 17 3.41992Z"
+                                stroke="currentColor"
+                                strokeWidth="1.5"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              />
+                            </svg>
+                            Right
+                          </button>
+                        </div>
+                      </div>
+                    }
+                  </div>
+                );
+              })}
+          </div>
+        </div>
+      )}
       <div className=" flex justify-center mt-2">
         {loading ? (
           <button
