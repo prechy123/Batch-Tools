@@ -2,6 +2,7 @@ import {
   handleBackgroundRemover,
   handleHtmlToPdfConverter,
   handleImageResizer,
+  handleJsonToCsvConverter,
   handleMovToMp4Converter,
   handlePdfMerger,
   handlePdfToJpegConverter,
@@ -25,6 +26,7 @@ interface UseServerHandler {
   width?: string;
   height?: string;
   setImageLink?: (link: string | null) => void;
+  text?: string;
 }
 
 interface Image {
@@ -42,6 +44,7 @@ function useServerHandler({
   width,
   height,
   setImageLink,
+  text,
 }: UseServerHandler) {
   const [fileName, setFileName] = useState("");
   const [loading, setLoading] = useState(false);
@@ -49,8 +52,8 @@ function useServerHandler({
 
   async function handleSubmit() {
     setLoading(true);
-    if (!file && !url && !files) {
-      alert("Please select a file first!");
+    if (!file && !url && !files && !text) {
+      alert("Please select a file or enter a text first!");
       setLoading(false);
       return;
     }
@@ -156,6 +159,15 @@ function useServerHandler({
           setFileName("Converted_Webpage.pdf");
           await handleHtmlToPdfConverter(
             url,
+            currentTool,
+            setDownloadLink,
+            setLoading
+          );
+          break;
+        case "JSON to CSV":
+          setFileName("converted_json_to_csv.csv");
+          await handleJsonToCsvConverter(
+            text,
             currentTool,
             setDownloadLink,
             setLoading

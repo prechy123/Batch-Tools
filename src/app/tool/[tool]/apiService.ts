@@ -363,9 +363,40 @@ export async function handleHtmlToPdfConverter(
     const pdfUrl = window.URL.createObjectURL(blob);
     setDownloadLink(pdfUrl);
     setLoading(false);
+    showToast("success", "Successfully converted, Press download button")
   } else {
     // const errorData = await response.json();
     showToast("error", "Something went wrong, try again later");
+    setLoading(false);
+  }
+}
+
+export async function handleJsonToCsvConverter(
+  text: any,
+  currentTool: any,
+  setDownloadLink: any,
+  setLoading: any
+) {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}${currentTool?.backendPath}`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: text,
+    }
+  );
+
+  if (response.ok) {
+    const blob = await response.blob();
+    const csvUrl = window.URL.createObjectURL(blob);
+    setDownloadLink(csvUrl);
+    setLoading(false);
+    showToast("success", "Successfully converted, Press download button")
+  } else {
+    // const errorData = await response.json();
+    showToast("error", "Invalid JSON format. Expected a list of dictionaries");
     setLoading(false);
   }
 }

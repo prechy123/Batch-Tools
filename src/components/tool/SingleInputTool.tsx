@@ -17,6 +17,10 @@ const SingleInputTool = ({ toolName }: { toolName: string }) => {
   const [width, setWidth] = useState<string>("");
   const [height, setHeight] = useState<string>("");
   const [progressWidth, setProgressWidth] = useState<string>("0%");
+  const [textArea, setTextArea] = useState<boolean>(false);
+  const [text, setText] = useState<string>("");
+  const [inputField, setInputField] = useState<boolean>(false);
+
   const {
     file,
     downloadLink,
@@ -38,6 +42,7 @@ const SingleInputTool = ({ toolName }: { toolName: string }) => {
       width,
       height,
       setImageLink,
+      text,
     });
 
   useEffect(() => {
@@ -52,6 +57,10 @@ const SingleInputTool = ({ toolName }: { toolName: string }) => {
       currentTool?.name === "HTML to PDF Converter"
     ) {
       setTextInput(true);
+    } else if (currentTool?.name === "JSON to CSV") {
+      setTextArea(true);
+    } else {
+      setInputField(false);
     }
   }, [currentTool?.name, setTextInput]);
 
@@ -115,59 +124,76 @@ const SingleInputTool = ({ toolName }: { toolName: string }) => {
               }}
             />
           </div>
-        ) : (
-          <label
-            {...getRootProps()}
-            className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-slate-600/25 dark:hover:bg-gray-800 dark:bg-slate-600/25 hover:bg-neutral-500  dark:border-gray-600 dark:hover:border-gray-500 max-w-[500px]"
-          >
-            <div className="flex flex-col items-center justify-center pt-5 pb-6">
-              {file ? (
-                <>
-                  <p className="mb-2 font-lg font-semibold text-center">
-                    {file.name}
-                  </p>
-                  <p className=" pt-2">Click to change</p>
-                </>
-              ) : (
-                <>
-                  <svg
-                    className="w-8 h-8 mb-4 "
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 20 16"
-                  >
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
-                    />
-                  </svg>
-                  {isDragActive ? (
-                    <p className="font-semibold">Drop file here</p>
-                  ) : (
-                    <p className="mb-2 text-sm  text-center">
-                      <span className="font-semibold">Click to upload</span> or
-                      drag and drop
-                    </p>
-                  )}
-                </>
-              )}
+        ) : textArea ? (
+          <div className="w-full md:mx-32 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+            <div className="px-4 py-2 bg-white rounded-lg dark:bg-gray-800">
+              <textarea
+                id="editor"
+                rows={20}
+                className="block w-full px-0 text-sm text-gray-800 bg-gray-50 border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400 focus:outline-none"
+                placeholder="Write JSON data..."
+                onChange={(e) => {
+                  setText(e.target.value), setDownloadLink(null);
+                }}
+                value={text}
+              ></textarea>
             </div>
-            <input
-              {...getInputProps()}
-              id="dropzone-file"
-              accept={currentTool?.acceptType}
-              type="file"
-              className="hidden"
-              onChange={(e) => {
-                setImages([]);
-                handleFileChange(e);
-              }}
-            />
-          </label>
+          </div>
+        ) : (
+          inputField && (
+            <label
+              {...getRootProps()}
+              className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-slate-600/25 dark:hover:bg-gray-800 dark:bg-slate-600/25 hover:bg-neutral-500  dark:border-gray-600 dark:hover:border-gray-500 max-w-[500px]"
+            >
+              <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                {file ? (
+                  <>
+                    <p className="mb-2 font-lg font-semibold text-center">
+                      {file.name}
+                    </p>
+                    <p className=" pt-2">Click to change</p>
+                  </>
+                ) : (
+                  <>
+                    <svg
+                      className="w-8 h-8 mb-4 "
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 20 16"
+                    >
+                      <path
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+                      />
+                    </svg>
+                    {isDragActive ? (
+                      <p className="font-semibold">Drop file here</p>
+                    ) : (
+                      <p className="mb-2 text-sm  text-center">
+                        <span className="font-semibold">Click to upload</span>{" "}
+                        or drag and drop
+                      </p>
+                    )}
+                  </>
+                )}
+              </div>
+              <input
+                {...getInputProps()}
+                id="dropzone-file"
+                accept={currentTool?.acceptType}
+                type="file"
+                className="hidden"
+                onChange={(e) => {
+                  setImages([]);
+                  handleFileChange(e);
+                }}
+              />
+            </label>
+          )
         )}
       </div>
       {allowDimensions && (
@@ -279,6 +305,7 @@ const SingleInputTool = ({ toolName }: { toolName: string }) => {
                 setFile(null);
                 setDownloadLink(null);
                 setUrl("");
+                setText("");
               }}
               className=" flex flex-col items-center justify-center"
             >

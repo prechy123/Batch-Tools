@@ -61,14 +61,14 @@ export const tools: Tools[] = [
     actionWord: "Transcribe Video",
     acceptType: "video/*",
   },
-  // {
-  //   id: 7,
-  //   name: "Youtube Downloader",
-  //   description:
-  //     "Allows users to download videos from YouTube directly to their devices",
-  //   backendPath: "/download-youtube/",
-  //   actionWord: "Load Video",
-  // },
+  {
+    id: 7,
+    name: "Youtube Downloader",
+    description:
+      "Allows users to download videos from YouTube directly to their devices",
+    backendPath: "/download-youtube/",
+    actionWord: "Load Video",
+  },
   // {
   //   id: 8,
   //   name: "Mov to MP4 Converter",
@@ -115,5 +115,12 @@ export const tools: Tools[] = [
     description: "Convert your Webpage to PDF files quickly and easily.",
     backendPath: "/html-to-pdf/",
     actionWord: "Convert to PDF"
+  },
+  {
+    id: 14,
+    name: "JSON to CSV",
+    description: "Convert your JSON data to CSV files quickly and effortlessly.",
+    backendPath: "/json-to-csv/",
+    actionWord: "Convert to CSV"
   }
 ];
