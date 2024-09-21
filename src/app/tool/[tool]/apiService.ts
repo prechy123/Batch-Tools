@@ -347,13 +347,16 @@ export async function handleHtmlToPdfConverter(
   setDownloadLink: any,
   setLoading: any
 ) {
-  const response = await fetch("http://127.0.0.1:8000/html-to-pdf/", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ url }),
-  });
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}${currentTool?.backendPath}`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ url }),
+    }
+  );
 
   if (response.ok) {
     const blob = await response.blob();
