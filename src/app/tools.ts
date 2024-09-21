@@ -121,6 +121,6 @@ export const tools: Tools[] = [
     name: "JSON to CSV",
     description: "Convert your JSON data to CSV files quickly and effortlessly.",
     backendPath: "/json-to-csv/",
-    actionWord: "Convert to CSV"
+    actionWord: "Convert to CSV",
   }
 ];
