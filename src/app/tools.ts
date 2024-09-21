@@ -109,4 +109,11 @@ export const tools: Tools[] = [
   //   actionWord: "Convert to PDF",
   //   acceptType: "image/*"
   // },
+  {
+    id: 13,
+    name: "HTML to PDF Converter",
+    description: "Convert your Webpage to PDF files quickly and easily.",
+    backendPath: "/html-to-pdf/",
+    actionWord: "Convert to PDF"
+  }
 ];

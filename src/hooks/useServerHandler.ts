@@ -1,5 +1,6 @@
 import {
   handleBackgroundRemover,
+  handleHtmlToPdfConverter,
   handleImageResizer,
   handleMovToMp4Converter,
   handlePdfMerger,
@@ -28,7 +29,7 @@ interface UseServerHandler {
 
 interface Image {
   page_number: number;
-  image_data: string
+  image_data: string;
 }
 
 function useServerHandler({
@@ -44,18 +45,18 @@ function useServerHandler({
 }: UseServerHandler) {
   const [fileName, setFileName] = useState("");
   const [loading, setLoading] = useState(false);
-  const [images, setImages] = useState<Image[] | []>([])
+  const [images, setImages] = useState<Image[] | []>([]);
 
   async function handleSubmit() {
     setLoading(true);
     if (!file && !url && !files) {
       alert("Please select a file first!");
-      setLoading(false)
+      setLoading(false);
       return;
     }
     if (files && files?.length <= 1) {
-      alert("Please select more than 1 pdf")
-      setLoading(false)
+      alert("Please select more than 1 pdf");
+      setLoading(false);
       return;
     }
 
@@ -140,16 +141,25 @@ function useServerHandler({
             currentTool,
             setDownloadLink,
             setLoading
-          )
+          );
           break;
         case "PDF to JPG Converter":
-          setFileName("Converted_file.jpg")
+          setFileName("Converted_file.jpg");
           await handlePdfToJpegConverter(
             file,
             currentTool,
             setImages,
             setLoading
-          )
+          );
+          break;
+        case "HTML to PDF Converter":
+          setFileName("Converted_Webpage.pdf");
+          await handleHtmlToPdfConverter(
+            url,
+            currentTool,
+            setDownloadLink,
+            setLoading
+          );
           break;
         default:
           setFileName("converted_file");

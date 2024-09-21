@@ -31,7 +31,7 @@ export async function handlePdfToWord(
       const blob = await response.blob();
       const url = URL.createObjectURL(blob);
       setDownloadLink(url);
-      showToast("success", "Successfully converted to word");
+      showToast("success", "Successfully converted, Press download button");
       setLoading(false);
     } else {
       setLoading(false);
@@ -63,7 +63,7 @@ export async function handleVideoToAudio(
     const blob = await response.blob();
     const url = URL.createObjectURL(blob);
     setDownloadLink(url);
-    showToast("success", "Successfully converted to audio");
+    showToast("success", "Successfully converted, Press download button");
     setLoading(false);
   } else {
     const errorText = await response.text();
@@ -99,7 +99,7 @@ export async function handleImageResizer(
     const url = URL.createObjectURL(blob);
     setDownloadLink(url);
     setImageLink(url);
-    showToast("success", "Successfully resize the image");
+    showToast("success", "Successfully resized, Press download button");
     setLoading(false);
   } else {
     showToast("error", "Something went wrong, try again later");
@@ -129,7 +129,10 @@ export async function handleBackgroundRemover(
     const url = URL.createObjectURL(blob);
     setDownloadLink(url);
     setImageLink(url);
-    showToast("success", "Successfully removed image background");
+    showToast(
+      "success",
+      "Successfully removed background, Press download button"
+    );
     setLoading(false);
   } else {
     showToast("error", "Something went wrong, try again later");
@@ -160,7 +163,10 @@ export async function handleQRCodeGenerator(
     const url = URL.createObjectURL(blob);
     setDownloadLink(url);
     setImageLink(url);
-    showToast("success", "Successfully generated QR code");
+    showToast(
+      "success",
+      "Successfully generated qr code, Press download button"
+    );
     setLoading(false);
   } else {
     const errorText = await response.text();
@@ -191,7 +197,7 @@ export async function handleVideoTranscriber(
     const blob = await response.blob();
     const url = URL.createObjectURL(blob);
     setDownloadLink(url);
-    showToast("success", "Successfully transcribed video");
+    showToast("success", "Successfully transcribed, Press download button");
     setLoading(false);
   } else {
     const errorText = await response.text();
@@ -223,7 +229,7 @@ export async function handleYoutubeDownloader(
       new Blob([blob], { type: "video/mp4" })
     );
     setDownloadLink(url);
-    showToast("success", "Successfully converted video");
+    showToast("success", "Successfully converted, Press download button");
     setLoading(false);
   } else {
     const errorText = await response.text();
@@ -254,7 +260,7 @@ export async function handleMovToMp4Converter(
     const blob = await response.blob();
     const url = URL.createObjectURL(blob);
     setDownloadLink(url);
-    showToast("success", "Successfully converted to word");
+    showToast("success", "Successfully converted, Press download button");
     setLoading(false);
   } else {
     setLoading(false);
@@ -286,7 +292,7 @@ export async function handlePdfMerger(
     const blob = await response.blob();
     const url = URL.createObjectURL(blob);
     setDownloadLink(url);
-    showToast("success", "Successfully merged the PDFs");
+    showToast("success", "Successfully merged, Press download button");
     setLoading(false);
   } else {
     setLoading(false);
@@ -324,7 +330,7 @@ export async function handlePdfToJpegConverter(
     if (response.ok) {
       const data = await response.json();
       setImages(data.images);
-      showToast("success", "Successfully converted PDF to JPG");
+      showToast("success", "Successfully converted, Press download button");
       setLoading(false);
     } else {
       const errorText = await response.text();
@@ -333,4 +339,30 @@ export async function handlePdfToJpegConverter(
       setLoading(false);
     }
   };
+}
+
+export async function handleHtmlToPdfConverter(
+  url: any,
+  currentTool: any,
+  setDownloadLink: any,
+  setLoading: any
+) {
+  const response = await fetch("http://127.0.0.1:8000/html-to-pdf/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ url }),
+  });
+
+  if (response.ok) {
+    const blob = await response.blob();
+    const pdfUrl = window.URL.createObjectURL(blob);
+    setDownloadLink(pdfUrl);
+    setLoading(false);
+  } else {
+    // const errorData = await response.json();
+    showToast("error", "Something went wrong, try again later");
+    setLoading(false);
+  }
 }

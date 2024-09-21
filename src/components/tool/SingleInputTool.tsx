@@ -16,6 +16,7 @@ const SingleInputTool = ({ toolName }: { toolName: string }) => {
   const [allowDimensions, setAllowDimension] = useState(false);
   const [width, setWidth] = useState<string>("");
   const [height, setHeight] = useState<string>("");
+  const [progressWidth, setProgressWidth] = useState<string>("0%");
   const {
     file,
     downloadLink,
@@ -47,14 +48,58 @@ const SingleInputTool = ({ toolName }: { toolName: string }) => {
       setAllowDimension(true);
     } else if (
       currentTool?.name === "QR Code Generator" ||
-      currentTool?.name === "Youtube Downloader"
+      currentTool?.name === "Youtube Downloader" ||
+      currentTool?.name === "HTML to PDF Converter"
     ) {
       setTextInput(true);
     }
   }, [currentTool?.name, setTextInput]);
 
+  function updateProgressBar() {
+    let current_progress = 0,
+      step = 0.2;
+    const interval = setInterval(function () {
+      current_progress += step;
+      const progress =
+        Math.round((Math.atan(current_progress) / (Math.PI / 2)) * 100 * 1000) /
+        1000;
+      setProgressWidth(`${progress}%`);
+      if (progress >= 100) {
+        clearInterval(interval);
+      } else if (progress >= 70) {
+        step = 0.1;
+      }
+    }, 100);
+    return interval;
+  }
+  useEffect(() => {
+    let interval: NodeJS.Timeout | null = null;
+    if (loading) {
+      interval = updateProgressBar();
+    } else {
+      if (progressWidth !== "0%") {
+        setProgressWidth("100%");
+        setTimeout(() => {
+          setProgressWidth("0%");
+        }, 1000);
+      }
+    }
+
+    return () => {
+      if (interval) clearInterval(interval);
+    };
+  }, [loading]);
+
   return (
-    <>
+    <div>
+      <div className="w-full rounded fixed top-[70px] left-0 right-0">
+        <div
+          className=" bg-gradient-to-r from-indigo-500 to-pink-500 h-1 rounded-l transition-all duration-300"
+          role="progressbar"
+          style={{ width: progressWidth }}
+        ></div>
+      </div>
+
       <h1 className=" text-center mt-6 text-2xl">{toolName}</h1>
       <p className=" text-center">{currentTool?.description}</p>
       <div className="flex justify-center w-full mt-6">
@@ -250,7 +295,7 @@ const SingleInputTool = ({ toolName }: { toolName: string }) => {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5 }}
                 >
-                  <h3>Resized Image:</h3>
+                  <h3>Image:</h3>
                   <Image
                     src={imageLink}
                     alt="Resized"
@@ -274,7 +319,7 @@ const SingleInputTool = ({ toolName }: { toolName: string }) => {
           )
         )}
       </div>
-    </>
+    </div>
   );
 };
 

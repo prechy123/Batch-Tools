@@ -4,9 +4,12 @@ import useServerHandler from "@/hooks/useServerHandler";
 import documentSvg from "../../../public/svg/document.svg";
 import Image from "next/image";
 import { Document, Page, pdfjs } from "react-pdf";
+import { useEffect, useState } from "react";
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/legacy/build/pdf.worker.min.mjs`;
 
 const MultipleInputTool = ({ toolName }: { toolName: string }) => {
+  const [progressWidth, setProgressWidth] = useState<string>("0%");
+
   const currentTool = tools.find((tool) => tool.name === toolName);
 
   const {
@@ -45,8 +48,50 @@ const MultipleInputTool = ({ toolName }: { toolName: string }) => {
     setFiles(dataTransfer.files);
   };
 
+  function updateProgressBar() {
+    let current_progress = 0,
+      step = 0.2;
+    const interval = setInterval(function () {
+      current_progress += step;
+      const progress =
+        Math.round((Math.atan(current_progress) / (Math.PI / 2)) * 100 * 1000) /
+        1000;
+      setProgressWidth(`${progress}%`);
+      if (progress >= 100) {
+        clearInterval(interval);
+      } else if (progress >= 70) {
+        step = 0.1;
+      }
+    }, 100);
+    return interval;
+  }
+  useEffect(() => {
+    let interval: NodeJS.Timeout | null = null;
+    if (loading) {
+      interval = updateProgressBar();
+    } else {
+      if (progressWidth !== "0%") {
+        setProgressWidth("100%");
+        setTimeout(() => {
+          setProgressWidth("0%");
+        }, 1000);
+      }
+    }
+
+    return () => {
+      if (interval) clearInterval(interval);
+    };
+  }, [loading]);
+
   return (
-    <>
+    <div>
+      <div className="w-full  rounded fixed top-[70px] left-0 right-0">
+        <div
+          className=" bg-gradient-to-r from-indigo-500 to-pink-500 h-1 rounded-l transition-all duration-300"
+          role="progressbar"
+          style={{ width: progressWidth }}
+        ></div>
+      </div>
       <h1 className=" text-center mt-6 text-2xl">{toolName}</h1>
       <p className=" text-center">{currentTool?.description}</p>
       <div className="flex justify-center w-full mt-6">
@@ -91,7 +136,9 @@ const MultipleInputTool = ({ toolName }: { toolName: string }) => {
                   <p className="font-semibold">Drop file here</p>
                 ) : (
                   <p className="mb-2 text-sm  text-center">
-                    <span className="font-semibold">Click to upload or Drag and Drop</span>{" "}
+                    <span className="font-semibold">
+                      Click to upload or Drag and Drop
+                    </span>{" "}
                     <br />
                     Select more than one pdf to merge
                   </p>
@@ -287,7 +334,7 @@ const MultipleInputTool = ({ toolName }: { toolName: string }) => {
           </button>
         )}
       </div>
-    </>
+    </div>
   );
 };
 
