@@ -1,6 +1,7 @@
 import ToolCom from "@/components/ui/ToolCom";
-import { tools } from "./tools";
+import { tools, upComingTools } from "./tools";
 import * as motion from "framer-motion/client";
+import UpcomingToolCom from "@/components/ui/UpcomingToolCom";
 
 const containerVariants = {
   hidden: {
@@ -31,7 +32,7 @@ export default function Home() {
         </p>
       </div>
       <motion.div
-        className="grid items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 my-4 sm:my-7"
+        className="grid items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 my-4 sm:my-7  "
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -48,6 +49,28 @@ export default function Home() {
           );
         })}
       </motion.div>
+      <span className=" h-[1px] bg-black dark:bg-white w-full block"></span>
+      <h3 className=" text-4xl font-bold">Upcoming Tools</h3>
+      <motion.div
+        className="grid items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 my-4 sm:my-7  "
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        {upComingTools.map((tool) => {
+          return (
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              variants={childVariants}
+              key={tool.id}
+            >
+              <UpcomingToolCom name={tool.name} description={tool.description} />
+            </motion.div>
+          );
+        })}
+      </motion.div>
+      <br />
+      <br />
     </main>
   );
 }

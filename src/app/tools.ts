@@ -7,6 +7,12 @@ export interface Tools {
   acceptType?: string;
 }
 
+export interface UpcomingTools {
+  id: number;
+  name: string;
+  description: string;
+}
+
 export const tools: Tools[] = [
   {
     id: 1,
@@ -38,8 +44,7 @@ export const tools: Tools[] = [
   {
     id: 4,
     name: "Image Background Removal",
-    description:
-      "Automatically remove the background from images.",
+    description: "Automatically remove the background from images.",
     backendPath: "/remove-background/",
     actionWord: "Remove Background",
     acceptType: "image/*",
@@ -83,7 +88,7 @@ export const tools: Tools[] = [
     description: "Combine multiple PDF files into one quickly and easily.",
     backendPath: "/merge-pdfs/",
     actionWord: "Combine PDFs",
-    acceptType: "application/pdf"
+    acceptType: "application/pdf",
   },
   // {
   //   id: 10,
@@ -96,10 +101,11 @@ export const tools: Tools[] = [
   {
     id: 11,
     name: "PDF to JPG Converter",
-    description: "Transform PDF pages into high-quality JPG images effortlessly.",
+    description:
+      "Transform PDF pages into high-quality JPG images effortlessly.",
     backendPath: "/convert-pdf-to-jpg/",
     actionWord: "Convert PDF to JPG",
-    acceptType: "application/pdf"
+    acceptType: "application/pdf",
   },
   // {
   //   id: 12,
@@ -114,13 +120,34 @@ export const tools: Tools[] = [
     name: "HTML to PDF Converter",
     description: "Convert your Webpage to PDF files quickly and easily.",
     backendPath: "/html-to-pdf/",
-    actionWord: "Convert to PDF"
+    actionWord: "Convert to PDF",
   },
   {
     id: 14,
     name: "JSON to CSV",
-    description: "Convert your JSON data to CSV files quickly and effortlessly.",
+    description:
+      "Convert your JSON data to CSV files quickly and effortlessly.",
     backendPath: "/json-to-csv/",
     actionWord: "Convert to CSV",
-  }
+  },
+];
+
+export const upComingTools: UpcomingTools[] = [
+  {
+    id: 1,
+    name: "Voice Cloner",
+    description:
+      "Clone voices effortlessly and with precision in just a few clicks.",
+  },
+  {
+    id: 2,
+    name: "Youtube Downloader",
+    description:
+      "Allows users to download videos from YouTube directly to their devices",
+  },
+  {
+    id: 3,
+    name: "Mov to MP4 Converter",
+    description: "Convert MOV video files to the widely supported MP4 format.",
+  },
 ];

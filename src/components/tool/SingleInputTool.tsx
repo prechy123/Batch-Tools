@@ -50,6 +50,7 @@ const SingleInputTool = ({ toolName }: { toolName: string }) => {
   }, [toolName]);
   useEffect(() => {
     if (currentTool?.name === "Image Resizer") {
+      setInputField(true);
       setAllowDimension(true);
     } else if (
       currentTool?.name === "QR Code Generator" ||
@@ -60,7 +61,7 @@ const SingleInputTool = ({ toolName }: { toolName: string }) => {
     } else if (currentTool?.name === "JSON to CSV") {
       setTextArea(true);
     } else {
-      setInputField(false);
+      setInputField(true);
     }
   }, [currentTool?.name, setTextInput]);
 
