@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const currentTool = tools.find((t) => t.name === toolName);
 
   return {
-    title: `Dirchy - ${toolName}`,
+    title: `Batch Tools - ${toolName}`,
     description: currentTool?.description,
     keywords:
     `${toolName}, file converter, image resizer, video downloader, background remover, all-in-one app`,

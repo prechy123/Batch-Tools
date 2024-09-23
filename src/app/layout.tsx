@@ -6,7 +6,7 @@ import ToastProvider from "../providers/ToastProvider";
 import Footer from "@/components/shared/Footer";
 
 export const metadata: Metadata = {
-  title: "Dirchy",
+  title: "Batch Tools",
   description:
     "An All-In-One application to perform various operation to your various file formats",
   keywords:
