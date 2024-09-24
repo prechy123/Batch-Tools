@@ -10,7 +10,7 @@ const AboutPage = () => {
     <main className="h-screen container mx-6">
       <div className=" text-center mt-4 sm:mt-10">
         <h1 className=" text-3xl sm:text-4xl pb-3">
-          All-in-One Media Toolkit - Simplify Your Digital Workflow
+          BatchTools - Simplify Your Digital Workflow
         </h1>
         <p className=" text-l sm:text-xl px-10 md:px-20 text-justify">
           Welcome to BatchTools, the ultimate solution designed to streamline
