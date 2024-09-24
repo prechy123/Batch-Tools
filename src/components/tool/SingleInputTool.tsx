@@ -110,7 +110,7 @@ const SingleInputTool = ({ toolName }: { toolName: string }) => {
         ></div>
       </div>
 
-      <h1 className=" text-center mt-6 text-2xl">{toolName}</h1>
+      <h1 className=" text-center mt-6 text-2xl">{toolName.replace(/-/g, ' ')}</h1>
       <p className=" text-center">{currentTool?.description}</p>
       <div className="flex justify-center w-full mt-6">
         {textInput ? (

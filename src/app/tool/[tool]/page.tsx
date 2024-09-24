@@ -8,7 +8,7 @@ const ToolPage = () => {
   const { tool } = useParams();
   const toolName = Array.isArray(tool)
     ? tool.map(decodeURIComponent).join(", ") // Handle array case, join the decoded values
-    : decodeURIComponent(tool); // Handle string case
+    : tool;
 
   return (
     <div className=" h-screen container mx-6">
