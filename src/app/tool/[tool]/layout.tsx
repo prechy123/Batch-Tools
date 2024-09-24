@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     title: `Batch Tools - ${toolName.replace(/-/g, ' ')}`,
     description: currentTool?.description,
     keywords:
-    `${toolName}, file converter, image resizer, video downloader, background remover, all-in-one app`,
+    `${toolName}, batch tools, Convert document format, background removal, qr code generator, video transcriber, pdf merger, html to pdf, pdf to jpg, json to csv`,
   };
 }
 

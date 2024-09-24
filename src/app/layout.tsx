@@ -8,9 +8,9 @@ import Footer from "@/components/shared/Footer";
 export const metadata: Metadata = {
   title: "Batch Tools",
   description:
-    "An All-In-One application to perform various operation to your various file formats",
+    "Batch tools provides various tools which are easy and free to use to work with files completely free and easy to use. Convert document format, background removal, qr code generator, video transcriber, pdf merger, html to pdf, pdf to jpg, json to csv and more!",
   keywords:
-    "file converter, image resizer, video downloader, background remover, all-in-one app",
+    "batch tools, Convert document format, background removal, qr code generator, video transcriber, pdf merger, html to pdf, pdf to jpg, json to csv",
 };
 
 export default function RootLayout({
