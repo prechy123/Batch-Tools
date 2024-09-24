@@ -2,6 +2,7 @@
 
 import MultipleInputTool from "@/components/tool/MultipleInputTool";
 import SingleInputTool from "@/components/tool/SingleInputTool";
+import MarkupProvider from "@/providers/MarkupProvider";
 import { useParams } from "next/navigation";
 
 const ToolPage = () => {
@@ -11,13 +12,15 @@ const ToolPage = () => {
     : tool;
 
   return (
-    <div className=" h-screen container mx-6">
-      {toolName === "PDF Merger" ? (
-        <MultipleInputTool toolName={toolName} />
-      ) : (
-        <SingleInputTool toolName={toolName} />
-      )}
-    </div>
+    <MarkupProvider toolName={toolName}>
+      <div className=" h-screen container mx-6">
+        {toolName === "PDF Merger" ? (
+          <MultipleInputTool toolName={toolName} />
+        ) : (
+          <SingleInputTool toolName={toolName} />
+        )}
+      </div>
+    </MarkupProvider>
   );
 };
 
