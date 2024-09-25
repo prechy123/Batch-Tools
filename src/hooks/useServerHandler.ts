@@ -65,11 +65,11 @@ function useServerHandler({
 
     try {
       switch (toolName) {
-        case "PDF to Word Converter":
+        case "PDF-to-Word-Converter":
           setFileName(`converted_${file?.name.replace(".pdf", ".docx")}`);
           await handlePdfToWord(file, currentTool, setDownloadLink, setLoading);
           break;
-        case "Video to Audio Converter":
+        case "Video-to-Audio-Converter":
           setFileName("converted_audio.mp3");
           await handleVideoToAudio(
             file,
@@ -78,7 +78,7 @@ function useServerHandler({
             setLoading
           );
           break;
-        case "Image Resizer":
+        case "Image-Resizer":
           setFileName("resized_image.jpg");
           await handleImageResizer(
             file,
@@ -90,7 +90,7 @@ function useServerHandler({
             setLoading
           );
           break;
-        case "Image Background Removal":
+        case "Image-Background-Removal":
           setFileName("background_removed.png");
           await handleBackgroundRemover(
             file,
@@ -100,7 +100,7 @@ function useServerHandler({
             setLoading
           );
           break;
-        case "QR Code Generator":
+        case "QR-Code-Generator":
           setFileName("generated_qr_code.png");
           await handleQRCodeGenerator(
             url,
@@ -110,7 +110,7 @@ function useServerHandler({
             setLoading
           );
           break;
-        case "Video Transcriber with Real Segment Time Calculation":
+        case "Video-Transcriber":
           setFileName("transcription.srt");
           await handleVideoTranscriber(
             file,
@@ -119,7 +119,7 @@ function useServerHandler({
             setLoading
           );
           break;
-        case "Youtube Downloader":
+        case "Youtube-Downloader":
           setFileName("Downloaded_youtube_video.mp4");
           await handleYoutubeDownloader(
             url,
@@ -128,7 +128,7 @@ function useServerHandler({
             setLoading
           );
           break;
-        case "Mov to MP4 Converter":
+        case "Mov-to-MP4-Converter":
           setFileName("Converted_video.mp4");
           await handleMovToMp4Converter(
             file,
@@ -137,7 +137,7 @@ function useServerHandler({
             setLoading
           );
           break;
-        case "PDF Merger":
+        case "PDF-Merger":
           setFileName("Merged_PDF.pdf");
           await handlePdfMerger(
             files,
@@ -146,7 +146,7 @@ function useServerHandler({
             setLoading
           );
           break;
-        case "PDF to JPG Converter":
+        case "PDF-to-JPG-Converter":
           setFileName("Converted_file.jpg");
           await handlePdfToJpegConverter(
             file,
@@ -155,7 +155,7 @@ function useServerHandler({
             setLoading
           );
           break;
-        case "HTML to PDF Converter":
+        case "HTML-to-PDF-Converter":
           setFileName("Converted_Webpage.pdf");
           await handleHtmlToPdfConverter(
             url,
@@ -164,7 +164,7 @@ function useServerHandler({
             setLoading
           );
           break;
-        case "JSON to CSV":
+        case "JSON-to-CSV":
           setFileName("converted_json_to_csv.csv");
           await handleJsonToCsvConverter(
             text,
