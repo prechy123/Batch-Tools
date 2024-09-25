@@ -14,7 +14,7 @@ const ToolPage = () => {
   return (
     <MarkupProvider toolName={toolName}>
       <div className=" h-screen container mx-6">
-        {toolName === "PDF Merger" ? (
+        {toolName === "PDF-Merger" ? (
           <MultipleInputTool toolName={toolName} />
         ) : (
           <SingleInputTool toolName={toolName} />

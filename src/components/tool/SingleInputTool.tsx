@@ -53,12 +53,12 @@ const SingleInputTool = ({ toolName }: { toolName: string }) => {
       setInputField(true);
       setAllowDimension(true);
     } else if (
-      currentTool?.name === "QR Code Generator" ||
-      currentTool?.name === "Youtube Downloader" ||
-      currentTool?.name === "HTML to PDF Converter"
+      currentTool?.name === "QR-Code-Generator" ||
+      currentTool?.name === "Youtube-Downloader" ||
+      currentTool?.name === "HTML-to-PDF-Converter"
     ) {
       setTextInput(true);
-    } else if (currentTool?.name === "JSON to CSV") {
+    } else if (currentTool?.name === "JSON-to-CSV") {
       setTextArea(true);
     } else {
       setInputField(true);
