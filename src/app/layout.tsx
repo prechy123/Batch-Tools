@@ -8,7 +8,7 @@ import Footer from "@/components/shared/Footer";
 export const metadata: Metadata = {
   title: "Batch Tools",
   description:
-    "Batch tools provides various tools which are easy and free to use to work with files completely free and easy to use. Convert document format, background removal, qr code generator, video transcriber, pdf merger, html to pdf, pdf to jpg, json to csv and more!",
+    "Batch Tools offers a wide range of powerful, easy-to-use, and completely free tools to simplify working with files. Effortlessly convert document formats, remove backgrounds, generate QR codes, transcribe videos, merge PDFs, convert HTML to PDF, transform PDFs to JPG, convert JSON to CSV, and much more – all in one place!",
   keywords:
     "batch tools, Convert document format, background removal, qr code generator, video transcriber, pdf merger, html to pdf, pdf to jpg, json to csv",
 };

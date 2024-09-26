@@ -25,10 +25,11 @@ export default function Home() {
     <main className="h-screen container mx-6">
       <div className=" text-center mt-4 sm:mt-10">
         <h1 className=" text-3xl sm:text-4xl pb-3">
-          BatchTools - Simplify Your Digital Workflow
+          Batch Tools - Simplify Your Digital Workflow
         </h1>
         <p className=" text-l sm:text-xl">
-          Convert, Capture, Resize, and Download—all from one app
+          Batch Tools offers a wide range of powerful, easy-to-use, and
+          completely free tools to simplify working with files
         </p>
       </div>
       <motion.div
@@ -50,7 +51,7 @@ export default function Home() {
         })}
       </motion.div>
       <span className=" h-[1px] bg-black dark:bg-white w-full block"></span>
-      <h3 className=" text-4xl font-bold">Upcoming Tools</h3>
+      <h2 className=" text-4xl font-bold">Upcoming Tools</h2>
       <motion.div
         className="grid items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 my-4 sm:my-7  "
         variants={containerVariants}
@@ -64,7 +65,10 @@ export default function Home() {
               variants={childVariants}
               key={tool.id}
             >
-              <UpcomingToolCom name={tool.name} description={tool.description} />
+              <UpcomingToolCom
+                name={tool.name}
+                description={tool.description}
+              />
             </motion.div>
           );
         })}
