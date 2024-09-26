@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+# Batch Tools
+Batch Tools offers a wide range of powerful, easy-to-use, and completely free tools to simplify working with files. Effortlessly convert document formats, remove backgrounds, generate QR codes, transcribe videos, merge PDFs, convert HTML to PDF, transform PDFs to JPG, convert JSON to CSV, and much more – all in one place!
+![image](https://github.com/user-attachments/assets/e129d625-993c-4fb1-8e28-7f7d1d600c32)
+
+## Built With
+Batch Tools was built using NextJs14
+
+* [NextJS](https://nextjs.org)
+* [TailwindCss](https://tailwindcss.com/)
 
 ## Getting Started
 
-First, run the development server:
+To get a local copy up and running, follow these simple steps.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 1. Prerequisites
+Before you proceed, ensure that you have the following prerequisites installed:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Node.js and npm: [Download and Install Node.js](https://nodejs.org/)
+- Git: [Download and Install Git](https://git-scm.com/downloads)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 2. Setting up
+1. Install dependencies: Run `npm install`.
+2. Start the React frontend: Run `npm run dev`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+## 3. Running the Application
+- Access the website at `http://localhost:3000/`.
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Contributing
+Since the backend for Batch Tools is currently private, contributors won’t be able to work on API requests or access backend logic directly. This may limit certain types of contributions, such as building new features that depend on server-side APIs or fixing backend bugs. However, contributions to the frontend, user interface, and documentation are still highly encouraged. Enhancements to the existing tools or suggestions for improving the architecture can also be discussed.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
+If you'd like to contribute to this project, follow the following steps:-   
 
-## Deploy on Vercel
+1. Clone your repository (`git clone https://github.com/prechy123/Batch-Tools.git`)
+2. Create your Feature Branch (`git checkout -b feat/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some Amazing Feature'`)
+4. Push to the Branch (`git push origin feat/AmazingFeature`)
+5. Open a Pull Request
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## ScreenShots
+### Home Page
+![image](https://github.com/user-attachments/assets/4b22f512-2708-4e24-935a-d24dfa3eb1c7)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Tools Page
+![image](https://github.com/user-attachments/assets/c7d8ea40-709d-4e07-a170-792ddde65ec4)
+![image](https://github.com/user-attachments/assets/28da761b-77ed-4a42-b4b5-2025694699cd)
+![image](https://github.com/user-attachments/assets/6c927952-8762-4a6c-b9f7-754ef7e1b8a9)
+
+### About Page
+![image](https://github.com/user-attachments/assets/e06a9b3c-f935-435b-85cd-2db76d5102d5)
+
+#### Visit <a href = "https://batchtools.site/" target="_blank">Batch Tools</a>
+
+
+
+
