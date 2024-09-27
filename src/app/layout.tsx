@@ -5,6 +5,9 @@ import Header from "@/components/shared/Header";
 import ToastProvider from "../providers/ToastProvider";
 import Footer from "@/components/shared/Footer";
 
+import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from "@vercel/analytics/react"
+
 export const metadata: Metadata = {
   title: "Batch Tools",
   description:
@@ -35,6 +38,8 @@ export default function RootLayout({
       >
         <Provider>
           <Header />
+          <SpeedInsights />
+          <Analytics />
           <main
             style={{
               width: "100%",
