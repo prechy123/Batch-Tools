@@ -31,14 +31,25 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
         },
       ],
     },
+    robots: {
+      index: false,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: false,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
     twitter: {
       card: 'summary_large_image',
       title: `Batch Tools - ${tool.replace(/-/g, ' ')}`,
       description: currentTool?.description,
-      images: {
-        url: 'https://t4.ftcdn.net/jpg/02/18/18/55/360_F_218185587_P4zituDtWJOfClUKL6merI0BgLMIxoeC.jpg',
-        alt: 'Og Image Alt'
-      },
+      // images: {
+      //   url: 'https://t4.ftcdn.net/jpg/02/18/18/55/360_F_218185587_P4zituDtWJOfClUKL6merI0BgLMIxoeC.jpg',
+      //   alt: 'Og Image Alt'
+      // },
     },
   };
 }
