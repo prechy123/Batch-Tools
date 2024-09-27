@@ -10,15 +10,13 @@ interface Params {
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { tool } = params;
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  const toolName: string = decodeURIComponent(tool);
-  const currentTool = tools.find((t) => t.name === toolName);
+  const currentTool = tools.find((t) => t.name === tool);
 
   return {
-    title: `Batch Tools - ${toolName.replace(/-/g, ' ')}`,
+    title: `Batch Tools - ${tool.replace(/-/g, ' ')}`,
     description: currentTool?.description,
     keywords:
-    `${toolName}, batch tools, Convert document format, background removal, qr code generator, video transcriber, pdf merger, html to pdf, pdf to jpg, json to csv`,
+    `${tool}, batch tools, Convert document format, background removal, qr code generator, video transcriber, pdf merger, html to pdf, pdf to jpg, json to csv`,
   };
 }
 
