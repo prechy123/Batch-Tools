@@ -16,6 +16,8 @@ export const metadata: Metadata = {
     "batch tools, Convert document format, background removal, qr code generator, video transcriber, pdf merger, html to pdf, pdf to jpg, json to csv",
 };
 
+export const revalidate = 0
+
 export default function RootLayout({
   children,
 }: Readonly<{
