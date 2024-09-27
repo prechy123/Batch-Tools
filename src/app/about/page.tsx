@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Dirchy - About",
-  description: "Learn more about the Dirchy All-in-One project.",
+  title: "Batch Tools - About",
+  description: "Learn more about Batch Tools project.",
 };
 
 const AboutPage = () => {
