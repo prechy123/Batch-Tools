@@ -20,7 +20,7 @@ Before you proceed, ensure that you have the following prerequisites installed:
 - Git: [Download and Install Git](https://git-scm.com/downloads)
 
 ## 2. Setting up
-1. in .enc.local add `NEXT_PUBLIC_BACKEND_URL=something`
+1. in .env.local add `NEXT_PUBLIC_BACKEND_URL=something`
 1. Install dependencies: Run `npm install`.
 2. Start the React frontend: Run `npm run dev`.
 
