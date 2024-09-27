@@ -22,14 +22,14 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
       description: currentTool?.description,
       url: `https://batchtools.site/tool/${tool}`,
       type: 'website',
-      images: [
-        {
-          url: 'https://t4.ftcdn.net/jpg/02/18/18/55/360_F_218185587_P4zituDtWJOfClUKL6merI0BgLMIxoeC.jpg',
-          width: 800,
-          height: 600,
-          alt: 'Og Image Alt',
-        },
-      ],
+      // images: [
+      //   {
+      //     url: 'https://t4.ftcdn.net/jpg/02/18/18/55/360_F_218185587_P4zituDtWJOfClUKL6merI0BgLMIxoeC.jpg',
+      //     width: 800,
+      //     height: 600,
+      //     alt: 'Og Image Alt',
+      //   },
+      // ],
     },
     robots: {
       index: false,
