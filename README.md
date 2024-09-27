@@ -20,6 +20,7 @@ Before you proceed, ensure that you have the following prerequisites installed:
 - Git: [Download and Install Git](https://git-scm.com/downloads)
 
 ## 2. Setting up
+1. in .env.local add `NEXT_PUBLIC_BACKEND_URL=something`
 1. Install dependencies: Run `npm install`.
 2. Start the React frontend: Run `npm run dev`.
 
@@ -30,6 +31,7 @@ Before you proceed, ensure that you have the following prerequisites installed:
 
 ## Contributing
 Since the backend for Batch Tools is currently private, contributors won’t be able to work on API requests or access backend logic directly. This may limit certain types of contributions, such as building new features that depend on server-side APIs or fixing backend bugs. However, contributions to the frontend, user interface, and documentation are still highly encouraged. Enhancements to the existing tools or suggestions for improving the architecture can also be discussed.
+so setup
 
 Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
 If you'd like to contribute to this project, follow the following steps:-   
