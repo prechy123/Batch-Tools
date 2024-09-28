@@ -49,7 +49,7 @@ const SingleInputTool = ({ toolName }: { toolName: string }) => {
     window.scrollTo(0, 0);
   }, [toolName]);
   useEffect(() => {
-    if (currentTool?.name === "Image Resizer") {
+    if (currentTool?.name === "Image-Resizer") {
       setInputField(true);
       setAllowDimension(true);
     } else if (
