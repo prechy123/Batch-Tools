@@ -11,7 +11,7 @@ import {
   handleVideoToAudio,
   handleVideoTranscriber,
   handleYoutubeDownloader,
-} from "@/app/tool/[tool]/apiService";
+} from "@/app/(tool)/[tool]/apiService";
 import { showToast } from "@/utils/ShowToast";
 import { useState } from "react";
 import type { Tools } from "@/app/tools";
