@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://i.ibb.co/QYRccnw/Screenshot-2024-09-28-133605.png",
+        url: "/public/png/homepage.png",
         width: 800,
         height: 600,
         alt: "Batch Tools Home Page",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     title: `Batch Tools`,
     description:
       "Batch Tools offers free tools to simplify working with files. Convert document formats, remove backgrounds, generate QR codes, transcribe videos, merge PDFs, convert HTML to PDF, transform PDFs to JPG, convert JSON to CSV, and much more - all in one place!",
-    images: ["https://i.ibb.co/QYRccnw/Screenshot-2024-09-28-133605.png"],
+    images: ["/public/png/homepage.png"],
   },
   robots: {
     index: true,
