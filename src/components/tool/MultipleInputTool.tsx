@@ -1,3 +1,5 @@
+"use client";
+
 import { tools } from "@/app/tools";
 import useMultipleFileInput from "@/hooks/useMultipleFileInput";
 import useServerHandler from "@/hooks/useServerHandler";
