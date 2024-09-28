@@ -13,31 +13,30 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const currentTool = tools.find((t) => t.name === tool);
 
   return {
-    title: `Batch Tools - ${tool.replace(/-/g, ' ')}`,
+    title: `Batch Tools - ${tool.replace(/-/g, " ")}`,
     description: currentTool?.description,
-    keywords:
-    `${tool}, batch tools, Convert document format, background removal, qr code generator, video transcriber, pdf merger, html to pdf, pdf to jpg, json to csv`,
+    keywords: `${tool}, batch tools, Convert document format, background removal, qr code generator, video transcriber, pdf merger, html to pdf, pdf to jpg, json to csv`,
     openGraph: {
-      title: `Batch Tools - ${tool.replace(/-/g, ' ')}`,
+      title: `Batch Tools - ${tool.replace(/-/g, " ")}`,
       description: currentTool?.description,
       url: `https://batchtools.site/tool/${tool}`,
-      type: 'website',
-      siteName: 'Batch Tools',
+      type: "website",
+      siteName: "Batch Tools",
       images: [
         {
-          url: 'https://ibb.co/HGs22Y8',
+          url: "https://i.ibb.co/QYRccnw/Screenshot-2024-09-28-133605.png",
           width: 800,
           height: 600,
-          alt: 'Batch Tools Home Page',
+          alt: "Batch Tools Home Page",
         },
       ],
-      locale: 'en_US',
+      locale: "en_US",
     },
     twitter: {
-      card: 'summary_large_image',
-      title: `Batch Tools - ${tool.replace(/-/g, ' ')}`,
+      card: "summary_large_image",
+      title: `Batch Tools - ${tool.replace(/-/g, " ")}`,
       description: currentTool?.description,
-      images: ['https://ibb.co/HGs22Y8']
+      images: ["https://i.ibb.co/QYRccnw/Screenshot-2024-09-28-133605.png"],
     },
     robots: {
       index: true,
