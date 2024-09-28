@@ -11,46 +11,46 @@ import { Analytics } from "@vercel/analytics/react";
 export const metadata: Metadata = {
   title: "Batch Tools",
   description:
-    "Batch Tools offers a wide range of powerful, easy-to-use, and completely free tools to simplify working with files. Effortlessly convert document formats, remove backgrounds, generate QR codes, transcribe videos, merge PDFs, convert HTML to PDF, transform PDFs to JPG, convert JSON to CSV, and much more – all in one place!",
+    "Batch Tools offers free tools to simplify working with files. Convert document formats, remove backgrounds, generate QR codes, transcribe videos, merge PDFs, convert HTML to PDF, transform PDFs to JPG, convert JSON to CSV, and much more - all in one place!",
   keywords:
     "batch tools, Convert document format, background removal, qr code generator, video transcriber, pdf merger, html to pdf, pdf to jpg, json to csv",
+  openGraph: {
+    title: `Batch Tools`,
+    description:
+      "Batch Tools offers free tools to simplify working with files. Convert document formats, remove backgrounds, generate QR codes, transcribe videos, merge PDFs, convert HTML to PDF, transform PDFs to JPG, convert JSON to CSV, and much more - all in one place!",
+    url: `https://batchtools.site/`,
+    type: "website",
+    images: [
+      {
+        url: "https://ibb.co/HGs22Y8",
+        width: 800,
+        height: 600,
+        alt: "Batch Tools Home Page",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `Batch Tools`,
+    description:
+      "Batch Tools offers free tools to simplify working with files. Convert document formats, remove backgrounds, generate QR codes, transcribe videos, merge PDFs, convert HTML to PDF, transform PDFs to JPG, convert JSON to CSV, and much more - all in one place!",
+    images: ["https://ibb.co/HGs22Y8"],
+  },
   robots: {
     index: true,
     follow: true,
+    nocache: false,
     googleBot: {
       index: true,
       follow: true,
+      noimageindex: true,
       "max-video-preview": -1,
       "max-image-preview": "large",
       "max-snippet": -1,
     },
   },
-  openGraph: {
-    title: `Batch Tools`,
-    description: "Batch Tools offers a wide range of powerful, easy-to-use, and completely free tools to simplify working with files. Effortlessly convert document formats, remove backgrounds, generate QR codes, transcribe videos, merge PDFs, convert HTML to PDF, transform PDFs to JPG, convert JSON to CSV, and much more – all in one place!",
-    url: `https://batchtools.site/`,
-    type: 'website',
-    // images: [
-    //   {
-    //     url: 'https://t4.ftcdn.net/jpg/02/18/18/55/360_F_218185587_P4zituDtWJOfClUKL6merI0BgLMIxoeC.jpg',
-    //     width: 800,
-    //     height: 600,
-    //     alt: 'Batch Tools',
-    //   },
-    // ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: `Batch Tools`,
-    description: "Batch Tools offers a wide range of powerful, easy-to-use, and completely free tools to simplify working with files. Effortlessly convert document formats, remove backgrounds, generate QR codes, transcribe videos, merge PDFs, convert HTML to PDF, transform PDFs to JPG, convert JSON to CSV, and much more – all in one place!",
-    // images: {
-    //   url: 'https://t4.ftcdn.net/jpg/02/18/18/55/360_F_218185587_P4zituDtWJOfClUKL6merI0BgLMIxoeC.jpg',
-    //   alt: 'Og Image Alt'
-    // },
-  },
 };
 
-export const revalidate = 0;
 
 export default function RootLayout({
   children,
