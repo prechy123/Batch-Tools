@@ -28,6 +28,8 @@ export const metadata: Metadata = {
         alt: "Batch Tools Home Page",
       },
     ],
+    locale: "en_US",
+    siteName: "Batch Tools",
   },
   twitter: {
     card: "summary_large_image",
