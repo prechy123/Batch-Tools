@@ -1,14 +1,10 @@
 import MultipleInputTool from "@/components/tool/MultipleInputTool";
 import SingleInputTool from "@/components/tool/SingleInputTool";
 import MarkupProvider from "@/providers/MarkupProvider";
-import { useParams } from "next/navigation";
+import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 
-const ToolPage = () => {
-  const { tool } = useParams();
-  const toolName = Array.isArray(tool)
-    ? tool.map(decodeURIComponent).join(", ") // Handle array case, join the decoded values
-    : tool;
-
+const ToolPage = ({ params }: { params: Params }) => {
+  const toolName: string = params.tool;
   return (
     <MarkupProvider toolName={toolName}>
       <div className=" h-screen container mx-6">
