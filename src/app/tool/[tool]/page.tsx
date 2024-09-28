@@ -1,27 +1,32 @@
-"use client";
-
 import MultipleInputTool from "@/components/tool/MultipleInputTool";
 import SingleInputTool from "@/components/tool/SingleInputTool";
 import MarkupProvider from "@/providers/MarkupProvider";
-import { useParams } from "next/navigation";
 
-const ToolPage = () => {
-  const { tool } = useParams();
-  const toolName = Array.isArray(tool)
-    ? tool.map(decodeURIComponent).join(", ") // Handle array case, join the decoded values
-    : tool;
-
+const ToolPage = ({ tool }: { tool: string }) => {
   return (
-    <MarkupProvider toolName={toolName}>
+    <MarkupProvider toolName={tool}>
       <div className=" h-screen container mx-6">
-        {toolName === "PDF-Merger" ? (
-          <MultipleInputTool toolName={toolName} />
+        {tool === "PDF-Merger" ? (
+          <MultipleInputTool toolName={tool} />
         ) : (
-          <SingleInputTool toolName={toolName} />
+          <SingleInputTool toolName={tool} />
         )}
       </div>
     </MarkupProvider>
   );
 };
+
+// Server-side rendering function
+export async function getServerSideProps(context: {
+  params: { tool: string };
+}) {
+  const { tool } = context.params;
+
+  return {
+    props: {
+      tool,
+    },
+  };
+}
 
 export default ToolPage;
