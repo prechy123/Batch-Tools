@@ -23,7 +23,7 @@ export default function MarkupProvider({ children, toolName }: ToolProps) {
               provider: {
                 "@type": "Organization",
                 name: "Batch Tools",
-                url: `https://batchtools.site/${currentTool?.name}`,
+                url: `https://batchtools.site/tool/${currentTool?.name}`,
               },
               aggregateRating: {
                 "@type": "AggregateRating",
