@@ -24,9 +24,9 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
       siteName: "Batch Tools",
       images: [
         {
-          url: "/public/png/123456.png",
-          // width: 800,
-          // height: 600,
+          url: "https://i.ibb.co/QYRccnw/Screenshot-2024-09-28-133605.png",
+          width: 1200,
+          height: 630,
           alt: "Batch Tools Home Page",
         },
       ],
@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
       card: "summary_large_image",
       title: `Batch Tools - ${tool.replace(/-/g, " ")}`,
       description: currentTool?.description,
-      images: ["/public/png/123456.png"],
+      images: ["https://i.ibb.co/QYRccnw/Screenshot-2024-09-28-133605.png"],
     },
     robots: {
       index: true,
