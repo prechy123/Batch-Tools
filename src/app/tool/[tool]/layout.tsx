@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
       siteName: "Batch Tools",
       images: [
         {
-          url: currentTool?.ogImage ? currentTool.ogImage : "/og/home.png",
+          url: currentTool?.ogImage ? currentTool.ogImage : "/og/home.jpg",
           width: 1200,
           height: 630,
           alt: "Batch Tools Home Page",
@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
       card: "summary_large_image",
       title: `Batch Tools - ${tool.replace(/-/g, " ")}`,
       description: currentTool?.description,
-      images: [currentTool?.ogImage ? currentTool.ogImage : "/og/home.png"],
+      images: [currentTool?.ogImage ? currentTool.ogImage : "/og/home.jpg"],
     },
     robots: {
       index: true,
