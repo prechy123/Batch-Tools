@@ -8,6 +8,7 @@ import useFileInput from "@/hooks/useFileInput";
 import useTextInput from "@/hooks/useTextInput";
 import useServerHandler from "@/hooks/useServerHandler";
 import Image from "next/image";
+import Drawer from "../ui/Drawer";
 
 const SingleInputTool = ({ toolName }: { toolName: string }) => {
   const currentTool = tools.find((tool) => tool.name === toolName);
@@ -44,6 +45,11 @@ const SingleInputTool = ({ toolName }: { toolName: string }) => {
       setImageLink,
       text,
     });
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  const toggleDrawer = () => {
+    setIsDrawerOpen(!isDrawerOpen);
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -102,6 +108,9 @@ const SingleInputTool = ({ toolName }: { toolName: string }) => {
 
   return (
     <div>
+      <Drawer toggleDrawer={toggleDrawer} isDrawerOpen={isDrawerOpen}>
+      {currentTool?.help && <div dangerouslySetInnerHTML={{ __html: currentTool.help }} />}
+      </Drawer>
       <div className="w-full rounded fixed top-[70px] left-0 right-0">
         <div
           className=" bg-gradient-to-r from-indigo-500 to-pink-500 h-1 rounded-l transition-all duration-300"
@@ -110,7 +119,9 @@ const SingleInputTool = ({ toolName }: { toolName: string }) => {
         ></div>
       </div>
 
-      <h1 className=" text-center mt-6 text-2xl">{toolName.replace(/-/g, ' ')}</h1>
+      <h1 className=" text-center mt-6 text-2xl">
+        {toolName.replace(/-/g, " ")}
+      </h1>
       <p className=" text-center">{currentTool?.description}</p>
       <div className="flex justify-center w-full mt-6">
         {textInput ? (
@@ -346,6 +357,16 @@ const SingleInputTool = ({ toolName }: { toolName: string }) => {
             </button>
           )
         )}
+      </div>
+
+      <div className="fixed bottom-7 right-3">
+        <button
+          className="text-white bg-[#771D1D] hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 mb-2 dark:bg-[#BF125D] dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+          type="button"
+          onClick={toggleDrawer}
+        >
+          Help
+        </button>
       </div>
     </div>
   );

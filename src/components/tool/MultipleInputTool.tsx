@@ -7,6 +7,7 @@ import documentSvg from "../../../public/svg/document.svg";
 import Image from "next/image";
 import { Document, Page, pdfjs } from "react-pdf";
 import { useEffect, useState } from "react";
+import Drawer from "../ui/Drawer";
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/legacy/build/pdf.worker.min.mjs`;
 
 const MultipleInputTool = ({ toolName }: { toolName: string }) => {
@@ -31,6 +32,13 @@ const MultipleInputTool = ({ toolName }: { toolName: string }) => {
     currentTool,
     setDownloadLink,
   });
+
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  const toggleDrawer = () => {
+    setIsDrawerOpen(!isDrawerOpen);
+  };
+
   const moveFile = (index: number, direction: "up" | "down") => {
     if (!files) return;
     const newFiles = [...Array.from(files)];
@@ -68,6 +76,10 @@ const MultipleInputTool = ({ toolName }: { toolName: string }) => {
     return interval;
   }
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [toolName]);
+
+  useEffect(() => {
     let interval: NodeJS.Timeout | null = null;
     if (loading) {
       interval = updateProgressBar();
@@ -87,6 +99,11 @@ const MultipleInputTool = ({ toolName }: { toolName: string }) => {
 
   return (
     <div>
+      <Drawer toggleDrawer={toggleDrawer} isDrawerOpen={isDrawerOpen}>
+        {currentTool?.help && (
+          <div dangerouslySetInnerHTML={{ __html: currentTool.help }} />
+        )}
+      </Drawer>
       <div className="w-full  rounded fixed top-[70px] left-0 right-0">
         <div
           className=" bg-gradient-to-r from-indigo-500 to-pink-500 h-1 rounded-l transition-all duration-300"
@@ -337,6 +354,15 @@ const MultipleInputTool = ({ toolName }: { toolName: string }) => {
             {currentTool?.actionWord}
           </button>
         )}
+      </div>
+      <div className="fixed bottom-7 right-3">
+        <button
+          className="text-white bg-[#771D1D] hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 mb-2 dark:bg-[#BF125D] dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+          type="button"
+          onClick={toggleDrawer}
+        >
+          Help
+        </button>
       </div>
     </div>
   );
