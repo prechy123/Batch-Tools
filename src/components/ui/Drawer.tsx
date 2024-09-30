@@ -77,7 +77,7 @@ const Drawer = ({
         <span className="sr-only">Close menu</span>
       </button>
 
-      <p className=" pb-12 h-full overflow-scroll">{children}</p>
+      <div className=" pb-12 h-full overflow-scroll">{children}</div>
     </div>
   );
 };
