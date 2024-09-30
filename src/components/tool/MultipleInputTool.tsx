@@ -101,7 +101,10 @@ const MultipleInputTool = ({ toolName }: { toolName: string }) => {
     <div>
       <Drawer toggleDrawer={toggleDrawer} isDrawerOpen={isDrawerOpen}>
         {currentTool?.help && (
-          <div dangerouslySetInnerHTML={{ __html: currentTool.help }} />
+          <div
+            className=" text-justify"
+            dangerouslySetInnerHTML={{ __html: currentTool.help }}
+          />
         )}
       </Drawer>
       <div className="w-full  rounded fixed top-[70px] left-0 right-0">

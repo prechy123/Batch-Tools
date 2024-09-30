@@ -30,14 +30,12 @@ const Drawer = ({
   }, [isDrawerOpen, toggleDrawer]);
   return (
     <div
-      id="drawer-example"
       ref={drawerRef}
       className={`fixed top-0 left-0 z-10 h-[96vh] p-4 transition-transform bg-white w-80 dark:bg-black ${
         isDrawerOpen ? "translate-x-0" : "-translate-x-full"
       }`}
     >
       <h5
-        id="drawer-label"
         className="inline-flex items-center mb-4 text-base font-semibold text-gray-500 dark:text-gray-400"
       >
         <div>
@@ -56,7 +54,6 @@ const Drawer = ({
       <button
         type="button"
         onClick={toggleDrawer}
-        aria-controls="drawer-example"
         className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white"
       >
         <svg
