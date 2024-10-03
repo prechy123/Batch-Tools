@@ -4,10 +4,16 @@ import Slider from "react-slick";
 import ToolCom from "./ToolCom";
 import { tools } from "@/app/tools";
 import { useTheme } from "next-themes";
+import { CSSProperties } from "react";
 
-function SampleNextArrow(props: any) {
+interface ArrowProps {
+  className?: string;
+  style?: CSSProperties;
+  onClick?: () => void;
+}
+
+function SampleNextArrow({ className, style, onClick }: ArrowProps) {
   const { theme } = useTheme();
-  const { className, style, onClick } = props;
   return (
     <div
       className={className}
@@ -58,9 +64,8 @@ function SampleNextArrow(props: any) {
   );
 }
 
-function SamplePrevArrow(props: any) {
+function SamplePrevArrow({ className, style, onClick }: ArrowProps) {
   const { theme } = useTheme();
-  const { className, style, onClick } = props;
   return (
     <div
       className={className}
