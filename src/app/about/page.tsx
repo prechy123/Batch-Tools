@@ -106,6 +106,8 @@ const AboutPage = () => {
           </button>
         </a>
       </div>
+      <br />
+      <br />
     </main>
   );
 };
