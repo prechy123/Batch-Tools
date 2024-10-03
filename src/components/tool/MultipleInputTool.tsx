@@ -334,6 +334,7 @@ const MultipleInputTool = ({ toolName }: { toolName: string }) => {
             </div>
             <a
               href={downloadLink}
+              rel="nofollow"
               download={fileName}
               onClick={() => {
                 setFiles(null);

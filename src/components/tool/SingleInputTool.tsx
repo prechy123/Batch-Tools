@@ -257,6 +257,7 @@ const SingleInputTool = ({ toolName }: { toolName: string }) => {
               />
               <a
                 href={`data:image/jpeg;base64,${image.image_data}`}
+                rel="nofollow"
                 download={fileName}
                 onClick={() => {
                   setImages((prevValues) =>
@@ -327,6 +328,7 @@ const SingleInputTool = ({ toolName }: { toolName: string }) => {
             </div>
             <a
               href={downloadLink}
+              rel="nofollow"
               download={fileName}
               onClick={() => {
                 setFile(null);
