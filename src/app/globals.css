@@ -8,6 +8,10 @@ body {
   font-family: 'Poppins';
 }
 
+.slick-prev:before,
+.slick-next:before {
+  @apply hidden;
+}
 
 @layer utilities {
   .text-balance {
