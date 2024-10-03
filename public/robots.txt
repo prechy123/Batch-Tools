@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
 Sitemap: https://batchtools.site/sitemap.xml
+Crawl-delay: 10
