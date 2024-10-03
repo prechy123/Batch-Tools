@@ -96,14 +96,14 @@ export default function Home() {
         <ol className=" list-decimal mt-2">
           <li>
             <span className=" font-bold text-xl">Upload Your File</span> -
-            Select the tool you want to use, and upload your file (whether it's
+            Select the tool you want to use, and upload your file (whether it is
             a PDF, image, video, or another type of document). Our platform
             supports drag-and-drop functionality for your convenience.
           </li>
           <li>
             <span className=" font-bold text-xl">Process the File</span> - After
             uploading, click the action button relevant to the tool, such as
-            "Convert," "Resize," or "Remove." The system will process your file
+            Convert, Resize, or Remove. The system will process your file
             quickly and efficiently while maintaining high quality.
           </li>
           <li>

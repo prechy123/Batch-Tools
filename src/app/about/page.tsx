@@ -23,7 +23,7 @@ const AboutPage = () => {
         </p>
         <p className=" text-lg sm:text-xl px-10 md:px-20 text-justify mt-4">
           BatchTools is Open Source, but currently the backend for Batch Tools
-          is currently private, contributors won't be able to work on API
+          is currently private, contributors would not be able to work on API
           requests or access backend logic directly. This may limit certain
           types of contributions, such as building new features that depend on
           server-side APIs or fixing backend bugs. However, contributions to the
@@ -32,7 +32,7 @@ const AboutPage = () => {
           improving the architecture can also be discussed. <br />
           Contributions are what make the open-source community such an amazing
           place to learn, inspire, and create. Any contributions you make are
-          greatly appreciated. If you'd like to contribute to this project,
+          greatly appreciated. If you will like to contribute to this project,
           click on the GitHub icon to navigate to BatchTools client side github
           page.
         </p>
