@@ -40,11 +40,10 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     },
     robots: {
       index: true,
-      follow: false,
+      follow: true,
       googleBot: {
         index: true,
-        follow: false,
-        noimageindex: true,
+        follow: true,
         "max-snippet": -1,
         "max-image-preview": "large",
         "max-video-preview": -1,

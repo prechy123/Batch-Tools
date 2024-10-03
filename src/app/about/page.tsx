@@ -41,7 +41,7 @@ const AboutPage = () => {
         <a
           href="https://wa.me/qr/KFZCIPK23XTSO1"
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener noreferrer nofollow"
         >
           <button
             type="button"
@@ -63,7 +63,7 @@ const AboutPage = () => {
         <a
           href="mailto:bamideleprecious100@gmail.com?body=Hi,%20My%20name%20is%20"
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener noreferrer nofollow"
         >
           <button
             type="button"
@@ -85,7 +85,7 @@ const AboutPage = () => {
         <a
           href="https://github.com/prechy123/Dirchy-Next"
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener noreferrer nofollow"
           className=" pt-1 hover:pt-0"
         >
           <button
