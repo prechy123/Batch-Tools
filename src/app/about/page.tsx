@@ -12,7 +12,7 @@ const AboutPage = () => {
         <h1 className=" text-3xl sm:text-4xl pb-3">
           BatchTools - Simplify Your Digital Workflow
         </h1>
-        <p className=" text-l sm:text-xl px-10 md:px-20 text-justify">
+        <p className=" text-lg sm:text-xl px-10 md:px-20 text-justify">
           Welcome to BatchTools, the ultimate solution designed to streamline
           your digital tasks. Whether you are looking to convert files, capture
           moments, resize images, or download media, our app consolidates all
@@ -21,6 +21,22 @@ const AboutPage = () => {
           you manage your media files effortlessly, saving time and boosting
           productivity, all from the convenience of one app.
         </p>
+        <p className=" text-lg sm:text-xl px-10 md:px-20 text-justify mt-4">
+          BatchTools is Open Source, but currently the backend for Batch Tools
+          is currently private, contributors won't be able to work on API
+          requests or access backend logic directly. This may limit certain
+          types of contributions, such as building new features that depend on
+          server-side APIs or fixing backend bugs. However, contributions to the
+          frontend, user interface, and documentation are still highly
+          encouraged. Enhancements to the existing tools or suggestions for
+          improving the architecture can also be discussed. <br />
+          Contributions are what make the open-source community such an amazing
+          place to learn, inspire, and create. Any contributions you make are
+          greatly appreciated. If you'd like to contribute to this project,
+          click on the GitHub icon to navigate to BatchTools client side github
+          page.
+        </p>
+
         <h3 className=" text-5xl animate-pulse mt-4 mb-2">Contact Us</h3>
         <a
           href="https://wa.me/qr/KFZCIPK23XTSO1"

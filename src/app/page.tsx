@@ -73,6 +73,51 @@ export default function Home() {
           );
         })}
       </motion.div>
+      {/* <span className=" h-[1px] bg-black dark:bg-white w-full block"></span> */}
+      <div className=" text-l sm:text-xl px-10 md:px-20 text-justify">
+        <h2 className=" text-4xl font-bold text-center mt-20">LEARN MORE</h2>
+        <p>
+          Welcome to Batch Tools! Batch Tools is your go-to platform for a wide
+          variety of easy-to-use tools designed to make handling digital files
+          simpler and more efficient. Whether you need to convert, resize,
+          extract, or modify files, Batch Tools provides a streamlined process
+          for all your needs.
+          <br /> Explore Batch Tools today and take advantage of our current
+          tools, with many more exciting features on the way! Stay tuned for the
+          upcoming tools to further enhance your experience at Batch Tools.
+        </p>
+        <span className=" font-bold text-3xl mt-3 block">
+          Navigating Batch Tools
+        </span>
+        <p className=" mt-1">
+          To get started, simply visit the Batch Tools website and explore our
+          collection of tools. Each tool follows a straightforward process:
+        </p>
+        <ol className=" list-decimal mt-2">
+          <li>
+            <span className=" font-bold text-xl">Upload Your File</span> -
+            Select the tool you want to use, and upload your file (whether it's
+            a PDF, image, video, or another type of document). Our platform
+            supports drag-and-drop functionality for your convenience.
+          </li>
+          <li>
+            <span className=" font-bold text-xl">Process the File</span> - After
+            uploading, click the action button relevant to the tool, such as
+            "Convert," "Resize," or "Remove." The system will process your file
+            quickly and efficiently while maintaining high quality.
+          </li>
+          <li>
+            <span className=" font-bold text-xl">Download the Output</span> -
+            Once the process is complete, a download link will be generated for
+            you to retrieve your converted or modified file.
+          </li>
+        </ol>
+        <p className=" mt-5">
+          Explore Batch Tools today and streamline your workflow with our
+          current tools, while looking forward to more exciting features coming
+          soon!
+        </p>
+      </div>
       <br />
       <br />
     </main>
