@@ -184,29 +184,24 @@ export const tools: Tools[] = [
 export const upComingTools: UpcomingTools[] = [
   {
     id: 1,
-    name: "Note Summarizer",
-    description: "Compress long-form text into concise summaries",
-  },
-  {
-    id: 2,
     name: "Text Paraphraser",
     description:
       "Allows users to rephrase text while maintaining original meaning",
   },
   {
-    id: 3,
+    id: 2,
     name: "Voice-Cloner",
     description:
       "Clone voices effortlessly and with precision in just a few clicks.",
   },
   {
-    id: 4,
+    id: 3,
     name: "Youtube-Downloader",
     description:
       "Allows users to download videos from YouTube directly to their devices",
   },
   {
-    id: 5,
+    id: 4,
     name: "Mov-to-MP4-Converter",
     description: "Convert MOV video files to the widely supported MP4 format.",
   },
