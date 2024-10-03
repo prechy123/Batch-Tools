@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { showToast } from "@/utils/ShowToast";
+import jsPDF from "jspdf";
 
 export async function handlePdfToWord(
   file: any,
@@ -363,7 +364,7 @@ export async function handleHtmlToPdfConverter(
     const pdfUrl = window.URL.createObjectURL(blob);
     setDownloadLink(pdfUrl);
     setLoading(false);
-    showToast("success", "Successfully converted, Press download button")
+    showToast("success", "Successfully converted, Press download button");
   } else {
     // const errorData = await response.json();
     showToast("error", "Something went wrong, try again later");
@@ -393,10 +394,46 @@ export async function handleJsonToCsvConverter(
     const csvUrl = window.URL.createObjectURL(blob);
     setDownloadLink(csvUrl);
     setLoading(false);
-    showToast("success", "Successfully converted, Press download button")
+    showToast("success", "Successfully converted, Press download button");
   } else {
     // const errorData = await response.json();
     showToast("error", "Invalid JSON format. Expected a list of dictionaries");
+    setLoading(false);
+  }
+}
+
+export async function handleDocumentSumarizer(
+  file: any,
+  currentTool: any,
+  setDownloadLink: any,
+  setTextResponse: any,
+  setLoading: any
+) {
+  const formData = new FormData();
+  formData.append("file", file);
+  const response: any = await fetch(
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}${currentTool?.backendPath}`,
+    {
+      method: "POST",
+      body: formData,
+    }
+  );
+
+  if (response.ok) {
+    const res = await response.json();
+    const summarizedText = res.summarized_text;
+    const pdf = new jsPDF();
+    const lines = pdf.splitTextToSize(summarizedText, 180);
+    pdf.text(lines, 10, 10);
+    const pdfBlob = pdf.output("blob");
+    const pdfUrl = URL.createObjectURL(pdfBlob);
+    setDownloadLink(pdfUrl)
+    setTextResponse(summarizedText)
+    setLoading(false);
+    showToast("success", "Successfully Summarized, Press download button");
+  } else {
+    // const errorData = await response.json();
+    showToast("error", "Something went wrong, try again later");
     setLoading(false);
   }
 }

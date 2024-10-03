@@ -152,6 +152,17 @@ export const tools: Tools[] = [
     help: "<h4>How to Use the JSON to CSV Converter Tool:</h4><br /><ol><li><strong>Enter Your JSON text:</strong><ul><li>In the provided input field, enter the provided text.</li><br /></ul></li><li><strong>Start the Conversion:</strong><ul><li>After the file is uploaded, click the <strong>'Convert to CSV'</strong> button to begin the conversion process.</li><br /><li>The tool will convert your JSON data into a CSV file.</li><br /></ul></li><li><strong>Download Your CSV File:</strong><ul><li>Once the conversion is complete, a download link for the CSV file will appear.</li><br /><li>Click the link to download your converted CSV document.</li><br /></ul></li><li><strong>Important Notes:</strong><ul><li>Ensure your JSON data is well-structured for accurate conversion.</li><br /><li>Review the final CSV to confirm that the data has been converted correctly.</li><br /></ul></li></ol>",
     ogImage: "/og/jsonToCsv.jpg"
   },
+  {
+    id: 15,
+    name: "Note-Summarizer",
+    description:
+      "Create a concise summary for your lengthy notes",
+    backendPath: "/summarize-note-file/",
+    actionWord: "Create Summary",
+    help: "<h4>How to Use the Note Summarizer Tool:</h4><br /><ol><li><strong>Upload Your Notes:</strong><ul><li>In the provided input field, upload or paste your lengthy notes that you want to summarize.</li><br /></ul></li><li><strong>Start the Summarization:</strong><ul><li>Click the <strong>'Create Summary'</strong> button to begin the summarization process.</li><br /><li>The tool will analyze your notes and generate a concise summary.</li><br /></ul></li><li><strong>Download or Review Your Summary:</strong><ul><li>Once the summarization is complete, a text area or download link for the summary will appear.</li><br /><li>You can review or download the summarized notes for future use.</li><br /></ul></li><li><strong>Important Notes:</strong><ul><li>Ensure that your notes are well-structured for accurate summarization.</li><br /><li>Review the final summary to ensure it captures the key points effectively.</li><br /></ul></li></ol>",
+    acceptType: ".pdf, .docx, .txt, .pptx",
+    ogImage: "/og/noteSummarizer.jpg"
+  }
 ];
 
 export const upComingTools: UpcomingTools[] = [

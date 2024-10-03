@@ -1,5 +1,6 @@
 import {
   handleBackgroundRemover,
+  handleDocumentSumarizer,
   handleHtmlToPdfConverter,
   handleImageResizer,
   handleJsonToCsvConverter,
@@ -27,6 +28,7 @@ interface UseServerHandler {
   height?: string;
   setImageLink?: (link: string | null) => void;
   text?: string;
+  setTextResponse?: (link: string) => void;
 }
 
 interface Image {
@@ -45,6 +47,7 @@ function useServerHandler({
   height,
   setImageLink,
   text,
+  setTextResponse
 }: UseServerHandler) {
   const [fileName, setFileName] = useState("");
   const [loading, setLoading] = useState(false);
@@ -170,6 +173,16 @@ function useServerHandler({
             text,
             currentTool,
             setDownloadLink,
+            setLoading
+          );
+          break;
+        case "Note-Summarizer":
+          setFileName("document_summary.pdf");
+          await handleDocumentSumarizer(
+            file,
+            currentTool,
+            setDownloadLink,
+            setTextResponse,
             setLoading
           );
           break;
