@@ -10,6 +10,7 @@ import useServerHandler from "@/hooks/useServerHandler";
 import Image from "next/image";
 import Drawer from "../ui/Drawer";
 import AccordionItem from "./sub-components/AccordionItem";
+import ToolsCarousel from "../ui/ToolsCarousel";
 
 const SingleInputTool = ({ toolName }: { toolName: string }) => {
   const currentTool = tools.find((tool) => tool.name === toolName);
@@ -384,6 +385,10 @@ const SingleInputTool = ({ toolName }: { toolName: string }) => {
         >
           Help
         </button>
+      </div>
+      <div className=" mx-10 mt-10">
+        <h5 className="text-4xl font-bold mb-2">Related Tools</h5>
+        <ToolsCarousel toolName={toolName} />
       </div>
       <AccordionItem
         title={toolName.replace(/-/g, " ")}

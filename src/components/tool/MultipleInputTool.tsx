@@ -9,6 +9,7 @@ import { Document, Page, pdfjs } from "react-pdf";
 import { useEffect, useState } from "react";
 import Drawer from "../ui/Drawer";
 import AccordionItem from "./sub-components/AccordionItem";
+import ToolsCarousel from "../ui/ToolsCarousel";
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/legacy/build/pdf.worker.min.mjs`;
 
 const MultipleInputTool = ({ toolName }: { toolName: string }) => {
@@ -368,6 +369,10 @@ const MultipleInputTool = ({ toolName }: { toolName: string }) => {
         >
           Help
         </button>
+      </div>
+      <div className=" mx-10 mt-10">
+        <h5 className="text-4xl font-bold mb-2">Related Tools</h5>
+        <ToolsCarousel toolName={toolName} />
       </div>
       <AccordionItem
         title={toolName.replace(/-/g, " ")}
