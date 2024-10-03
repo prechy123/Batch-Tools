@@ -162,6 +162,7 @@ function ToolsCarousel({ toolName }: { toolName: string }) {
       <Slider {...settings} className=" prev">
         {tools
           .filter((tool) => tool.name !== toolName)
+          .sort(() => Math.random() - 0.5)
           .map((tool) => (
             <ToolCom
               key={tool.id}
