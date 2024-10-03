@@ -5,7 +5,7 @@ import ToolCom from "./ToolCom";
 import { tools } from "@/app/tools";
 import { useTheme } from "next-themes";
 
-function SampleNextArrow(props) {
+function SampleNextArrow(props: any) {
   const { theme } = useTheme();
   const { className, style, onClick } = props;
   return (
@@ -58,7 +58,7 @@ function SampleNextArrow(props) {
   );
 }
 
-function SamplePrevArrow(props) {
+function SamplePrevArrow(props: any) {
   const { theme } = useTheme();
   const { className, style, onClick } = props;
   return (
