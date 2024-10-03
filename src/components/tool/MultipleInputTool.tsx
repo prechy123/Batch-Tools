@@ -8,6 +8,7 @@ import Image from "next/image";
 import { Document, Page, pdfjs } from "react-pdf";
 import { useEffect, useState } from "react";
 import Drawer from "../ui/Drawer";
+import AccordionItem from "./sub-components/AccordionItem";
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/legacy/build/pdf.worker.min.mjs`;
 
 const MultipleInputTool = ({ toolName }: { toolName: string }) => {
@@ -367,6 +368,14 @@ const MultipleInputTool = ({ toolName }: { toolName: string }) => {
           Help
         </button>
       </div>
+      <AccordionItem
+        title={toolName.replace(/-/g, " ")}
+        content={
+          currentTool?.fullDescription
+            ? currentTool?.fullDescription
+            : "Try again Later"
+        }
+      />
     </div>
   );
 };

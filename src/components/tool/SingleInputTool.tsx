@@ -9,6 +9,7 @@ import useTextInput from "@/hooks/useTextInput";
 import useServerHandler from "@/hooks/useServerHandler";
 import Image from "next/image";
 import Drawer from "../ui/Drawer";
+import AccordionItem from "./sub-components/AccordionItem";
 
 const SingleInputTool = ({ toolName }: { toolName: string }) => {
   const currentTool = tools.find((tool) => tool.name === toolName);
@@ -45,7 +46,7 @@ const SingleInputTool = ({ toolName }: { toolName: string }) => {
       height,
       setImageLink,
       text,
-      setTextResponse
+      setTextResponse,
     });
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
@@ -125,7 +126,6 @@ const SingleInputTool = ({ toolName }: { toolName: string }) => {
           style={{ width: progressWidth }}
         ></div>
       </div>
-
       <h1 className=" text-center mt-6 text-2xl">
         {toolName.replace(/-/g, " ")}
       </h1>
@@ -162,7 +162,7 @@ const SingleInputTool = ({ toolName }: { toolName: string }) => {
           inputField && (
             <label
               {...getRootProps()}
-              className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-slate-600/25 dark:hover:bg-gray-800 dark:bg-slate-600/25 hover:bg-neutral-500  dark:border-gray-600 dark:hover:border-gray-500 max-w-[500px]"
+              className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-slate-600/25 dark:hover:bg-gray-800 hover:bg-neutral-500  dark:border-gray-600 dark:hover:border-gray-500 max-w-[500px]"
             >
               <div className="flex flex-col items-center justify-center pt-5 pb-6">
                 {file ? (
@@ -304,60 +304,62 @@ const SingleInputTool = ({ toolName }: { toolName: string }) => {
             Loading...
           </button>
         ) : downloadLink ? (
-            <div className=" flex flex-col">
+          <div className=" flex flex-col">
             {textResponse && (
               <div>
-                <h4 className=" text-center font-semibold mb-1">Summarized text: </h4>
+                <h4 className=" text-center font-semibold mb-1">
+                  Summarized text:{" "}
+                </h4>
                 <p className="text-justify mb-2">{textResponse}</p>
               </div>
             )}
-              <div className="mb-2 self-center">
-                <label className="block text-center mb-1 text-sm font-semibold text-gray-900 dark:text-white">
-                  Edit file name:
-                </label>
-                <input
-                  type="text"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[260px] md:w-[350px] text-center p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  value={fileName}
-                  onChange={(e) => setFileName(e.target.value)}
-                  placeholder="Edit file name"
-                />
-              </div>
-              <a
-                href={downloadLink}
-                download={fileName}
-                onClick={() => {
-                  setFile(null);
-                  setDownloadLink(null);
-                  setUrl("");
-                  setText("");
-                }}
-                className=" flex flex-col items-center justify-center"
-              >
-                <button
-                  type="button"
-                  className="text-white bg-yellow-700 hover:bg-yellow-800 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800"
-                >
-                  Download
-                </button>
-                {imageLink && (
-                  <motion.div
-                    className="flex justify-center items-center flex-col"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    <h3>Image:</h3>
-                    <Image
-                      src={imageLink}
-                      alt="Resized"
-                      width={width ? Number(width) : 150}
-                      height={height ? Number(height) : 150}
-                    />
-                  </motion.div>
-                )}
-              </a>
+            <div className="mb-2 self-center">
+              <label className="block text-center mb-1 text-sm font-semibold text-gray-900 dark:text-white">
+                Edit file name:
+              </label>
+              <input
+                type="text"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[260px] md:w-[350px] text-center p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                value={fileName}
+                onChange={(e) => setFileName(e.target.value)}
+                placeholder="Edit file name"
+              />
             </div>
+            <a
+              href={downloadLink}
+              download={fileName}
+              onClick={() => {
+                setFile(null);
+                setDownloadLink(null);
+                setUrl("");
+                setText("");
+              }}
+              className=" flex flex-col items-center justify-center"
+            >
+              <button
+                type="button"
+                className="text-white bg-yellow-700 hover:bg-yellow-800 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800"
+              >
+                Download
+              </button>
+              {imageLink && (
+                <motion.div
+                  className="flex justify-center items-center flex-col"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <h3>Image:</h3>
+                  <Image
+                    src={imageLink}
+                    alt="Resized"
+                    width={width ? Number(width) : 150}
+                    height={height ? Number(height) : 150}
+                  />
+                </motion.div>
+              )}
+            </a>
+          </div>
         ) : (
           images &&
           images.length === 0 && (
@@ -381,6 +383,14 @@ const SingleInputTool = ({ toolName }: { toolName: string }) => {
           Help
         </button>
       </div>
+      <AccordionItem
+        title={toolName.replace(/-/g, " ")}
+        content={
+          currentTool?.fullDescription
+            ? currentTool?.fullDescription
+            : "Try again Later"
+        }
+      />
     </div>
   );
 };
