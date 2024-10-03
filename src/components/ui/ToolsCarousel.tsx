@@ -1,9 +1,6 @@
-"use client";
-
 import Slider from "react-slick";
 import ToolCom from "./ToolCom";
 import { tools } from "@/app/tools";
-import { useTheme } from "next-themes";
 import { CSSProperties } from "react";
 
 interface ArrowProps {
@@ -13,7 +10,6 @@ interface ArrowProps {
 }
 
 function SampleNextArrow({ className, style, onClick }: ArrowProps) {
-  const { theme } = useTheme();
   return (
     <div
       className={className}
@@ -21,7 +17,7 @@ function SampleNextArrow({ className, style, onClick }: ArrowProps) {
       style={{ ...style, display: "block" }}
     >
       <svg
-        fill={theme == "dark" ? "#ffffff" : "#000000"}
+        className=" fill-black dark:fill-white"
         version="1.1"
         id="Layer_1"
         xmlns="http://www.w3.org/2000/svg"
@@ -65,7 +61,6 @@ function SampleNextArrow({ className, style, onClick }: ArrowProps) {
 }
 
 function SamplePrevArrow({ className, style, onClick }: ArrowProps) {
-  const { theme } = useTheme();
   return (
     <div
       className={className}
@@ -73,7 +68,7 @@ function SamplePrevArrow({ className, style, onClick }: ArrowProps) {
       style={{ ...style, display: "block" }}
     >
       <svg
-        fill={theme == "dark" ? "#ffffff" : "#000000"}
+        className=" fill-black dark:fill-white"
         version="1.1"
         id="Layer_1"
         xmlns="http://www.w3.org/2000/svg"
@@ -119,7 +114,7 @@ function SamplePrevArrow({ className, style, onClick }: ArrowProps) {
 
 function ToolsCarousel({ toolName }: { toolName: string }) {
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     slidesToShow: 3,
     slidesToScroll: 1,

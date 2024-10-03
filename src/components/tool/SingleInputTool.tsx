@@ -163,7 +163,7 @@ const SingleInputTool = ({ toolName }: { toolName: string }) => {
           inputField && (
             <label
               {...getRootProps()}
-              className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-slate-600/25 dark:hover:bg-gray-800 hover:bg-neutral-500  dark:border-gray-600 dark:hover:border-gray-500 max-w-[500px]"
+              className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-slate-600/25 dark:hover:bg-gray-800 hover:bg-neutral-500  dark:border-gray-600 dark:hover:border-gray-500 max-w-[500px] mx-4"
             >
               <div className="flex flex-col items-center justify-center pt-5 pb-6">
                 {file ? (
@@ -377,7 +377,7 @@ const SingleInputTool = ({ toolName }: { toolName: string }) => {
         )}
       </div>
 
-      <div className="fixed bottom-7 right-3">
+      <div className="fixed bottom-7 right-3 z-50">
         <button
           className="text-white bg-[#771D1D] hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 mb-2 dark:bg-[#BF125D] dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
           type="button"
