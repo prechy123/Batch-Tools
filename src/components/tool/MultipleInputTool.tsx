@@ -6,13 +6,14 @@ import useServerHandler from "@/hooks/useServerHandler";
 import documentSvg from "../../../public/svg/document.svg";
 import Image from "next/image";
 import { Document, Page, pdfjs } from "react-pdf";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Drawer from "../ui/Drawer";
 import AccordionItem from "./sub-components/AccordionItem";
 import ToolsCarousel from "../ui/ToolsCarousel";
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/legacy/build/pdf.worker.min.mjs`;
 
 const MultipleInputTool = ({ toolName }: { toolName: string }) => {
+  const memorizedToolName = useMemo(() => toolName, [toolName]);
   const [progressWidth, setProgressWidth] = useState<string>("0%");
 
   const currentTool = tools.find((tool) => tool.name === toolName);
@@ -372,7 +373,7 @@ const MultipleInputTool = ({ toolName }: { toolName: string }) => {
       </div>
       <div className=" mx-10 mt-10">
         <h5 className="text-4xl font-bold mb-2">Related Tools</h5>
-        <ToolsCarousel toolName={toolName} />
+        <ToolsCarousel toolName={memorizedToolName} />
       </div>
       <AccordionItem
         title={toolName.replace(/-/g, " ")}

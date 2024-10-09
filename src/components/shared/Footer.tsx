@@ -13,7 +13,15 @@ export default function Footer() {
           >
             Bamidele
           </Link>{" "}
-          and <Link href="/" className="underline">Dorbes</Link>.
+          and{" "}
+          <Link
+            href="https://dairo.vercel.app/"
+            target="_blank"
+            className="underline"
+          >
+            Dorbes
+          </Link>
+          .
         </p>
       </div>
     </div>

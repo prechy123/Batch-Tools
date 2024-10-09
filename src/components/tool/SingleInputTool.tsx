@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import * as motion from "framer-motion/client";
 
 import { tools } from "@/app/tools";
@@ -13,6 +13,7 @@ import AccordionItem from "./sub-components/AccordionItem";
 import ToolsCarousel from "../ui/ToolsCarousel";
 
 const SingleInputTool = ({ toolName }: { toolName: string }) => {
+  const memorizedToolName = useMemo(() => toolName, [toolName])
   const currentTool = tools.find((tool) => tool.name === toolName);
 
   const [imageLink, setImageLink] = useState<string | null>(null);
@@ -388,7 +389,7 @@ const SingleInputTool = ({ toolName }: { toolName: string }) => {
       </div>
       <div className=" mx-10 mt-10">
         <h5 className="text-4xl font-bold mb-2">Related Tools</h5>
-        <ToolsCarousel toolName={toolName} />
+        <ToolsCarousel toolName={memorizedToolName} />
       </div>
       <AccordionItem
         title={toolName.replace(/-/g, " ")}
@@ -398,6 +399,7 @@ const SingleInputTool = ({ toolName }: { toolName: string }) => {
             : "Try again Later"
         }
       />
+      <hr />
     </div>
   );
 };

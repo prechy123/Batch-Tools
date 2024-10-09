@@ -1,7 +1,7 @@
 import Slider from "react-slick";
 import ToolCom from "./ToolCom";
 import { tools } from "@/app/tools";
-import { CSSProperties } from "react";
+import React, { CSSProperties, memo } from "react";
 
 interface ArrowProps {
   className?: string;
@@ -112,7 +112,7 @@ function SamplePrevArrow({ className, style, onClick }: ArrowProps) {
   );
 }
 
-function ToolsCarousel({ toolName }: { toolName: string }) {
+const ToolsCarousel = memo(({ toolName }: { toolName: string }) => {
   const settings = {
     dots: false,
     infinite: true,
@@ -168,6 +168,7 @@ function ToolsCarousel({ toolName }: { toolName: string }) {
       </Slider>
     </div>
   );
-}
+})
+ToolsCarousel.displayName = "ToolsCarousel"
 
 export default ToolsCarousel;
