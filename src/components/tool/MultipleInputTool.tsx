@@ -42,24 +42,24 @@ const MultipleInputTool = ({ toolName }: { toolName: string }) => {
     setIsDrawerOpen(!isDrawerOpen);
   };
 
-  const moveFile = (index: number, direction: "up" | "down") => {
-    if (!files) return;
-    const newFiles = [...Array.from(files)];
-    if (direction === "up" && index > 0) {
-      [newFiles[index - 1], newFiles[index]] = [
-        newFiles[index],
-        newFiles[index - 1],
-      ];
-    } else if (direction === "down" && index < newFiles.length - 1) {
-      [newFiles[index + 1], newFiles[index]] = [
-        newFiles[index],
-        newFiles[index + 1],
-      ];
-    }
-    const dataTransfer = new DataTransfer();
-    newFiles.forEach((file) => dataTransfer.items.add(file));
-    setFiles(dataTransfer.files);
-  };
+  // const moveFile = (index: number, direction: "up" | "down") => {
+  //   if (!files) return;
+  //   const newFiles = [...Array.from(files)];
+  //   if (direction === "up" && index > 0) {
+  //     [newFiles[index - 1], newFiles[index]] = [
+  //       newFiles[index],
+  //       newFiles[index - 1],
+  //     ];
+  //   } else if (direction === "down" && index < newFiles.length - 1) {
+  //     [newFiles[index + 1], newFiles[index]] = [
+  //       newFiles[index],
+  //       newFiles[index + 1],
+  //     ];
+  //   }
+  //   const dataTransfer = new DataTransfer();
+  //   newFiles.forEach((file) => dataTransfer.items.add(file));
+  //   setFiles(dataTransfer.files);
+  // };
 
   function updateProgressBar() {
     let current_progress = 0,
