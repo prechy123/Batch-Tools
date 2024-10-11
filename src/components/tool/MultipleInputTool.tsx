@@ -5,12 +5,12 @@ import useMultipleFileInput from "@/hooks/useMultipleFileInput";
 import useServerHandler from "@/hooks/useServerHandler";
 import documentSvg from "../../../public/svg/document.svg";
 import Image from "next/image";
-import { Document, Page, pdfjs } from "react-pdf";
+// import { Document, Page, pdfjs } from "react-pdf";
 import { useEffect, useMemo, useState } from "react";
 import Drawer from "../ui/Drawer";
 import AccordionItem from "./sub-components/AccordionItem";
 import ToolsCarousel from "../ui/ToolsCarousel";
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/legacy/build/pdf.worker.min.mjs`;
+// pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/legacy/build/pdf.worker.min.mjs`;
 
 const MultipleInputTool = ({ toolName }: { toolName: string }) => {
   const memorizedToolName = useMemo(() => toolName, [toolName]);
@@ -184,7 +184,7 @@ const MultipleInputTool = ({ toolName }: { toolName: string }) => {
           />
         </label>
       </div>
-      {files && (
+      {/* {files && (
         <div className="  mt-5">
           <h3 className="text-center text-xl mb-1">Arrange PDFs</h3>
           <div className=" flex gap-1 md:gap-2 items-center justify-center flex-wrap">
@@ -293,7 +293,7 @@ const MultipleInputTool = ({ toolName }: { toolName: string }) => {
               })}
           </div>
         </div>
-      )}
+      )} */}
       <div className=" flex justify-center mt-2">
         {loading ? (
           <button
